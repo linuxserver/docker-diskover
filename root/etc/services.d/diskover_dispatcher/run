@@ -1,6 +1,12 @@
 #!/usr/bin/with-contenv bash
 
+TODAY=$(date +%Y-%m-%d)
+INDEX_NAME=${INDEX_NAME:-diskover-$TODAY}
+
 cd /app/diskover || exit
 
+# sleep to allow time for elasticsearch to start via docker-compose
+sleep 10
+
 exec \
-	s6-setuidgid abc /usr/bin/python3 ./diskover.py -d /data -a -n
+	s6-setuidgid abc /usr/bin/python3 ./diskover.py -d /data -a -i $INDEX_NAME
