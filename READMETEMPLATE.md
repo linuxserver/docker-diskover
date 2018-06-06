@@ -22,7 +22,7 @@ The [LinuxServer.io][linuxserverurl] team brings you another image release featu
 
 # alexphillips/diskover
 
-File system crawler, disk space usage, file search engine and file system analytics powered by Elasticsearch
+[diskover](https://github.com/shirosaidev/diskover) is a file system crawler, disk space usage, file search engine and file system analytics powered by Elasticsearch
 
 &nbsp;
 
