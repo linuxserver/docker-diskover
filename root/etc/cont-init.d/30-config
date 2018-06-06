@@ -1,0 +1,33 @@
+#!/usr/bin/with-contenv bash
+
+# set default values for variables
+REDIS_HOST=${REDIS_HOST:-redis}
+REDIS_PORT=${REDIS_PORT:-6379}
+ES_HOST=${ES_HOST:-elasticsearch}
+ES_PORT=${ES_PORT:-9200}
+ES_USER=${ES_USER:-elastic}
+ES_PASS=${ES_PASS:-changeme}
+
+if [ ! -f "/config/diskover.cfg" ]; then
+	mv /defaults/diskover.cfg /config/diskover.cfg
+	sed -i 's|{{REDIS_HOST}}|'$REDIS_HOST'|g' /config/diskover.cfg
+	sed -i 's|{{REDIS_PORT}}|'$REDIS_PORT'|g' /config/diskover.cfg
+	sed -i 's|{{ES_HOST}}|'$ES_HOST'|g' /config/diskover.cfg
+	sed -i 's|{{ES_PORT}}|'$ES_PORT'|g' /config/diskover.cfg
+	sed -i 's|{{ES_USER}}|'$ES_USER'|g' /config/diskover.cfg
+	sed -i 's|{{ES_PASS}}|'$ES_PASS'|g' /config/diskover.cfg
+fi
+
+if [ ! -f "/app/diskover/diskover.cfg" ]; then
+	ln -s /config/diskover.cfg /app/diskover/diskover.cfg
+fi
+
+# permissions
+chown -R abc:abc \
+	/app/diskover \
+	/config
+
+cd /app/diskover || exit
+
+exec \
+	s6-setuidgid abc /bin/bash ./diskover-bot-launcher.sh
