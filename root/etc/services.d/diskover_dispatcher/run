@@ -3,4 +3,4 @@
 cd /app/diskover || exit
 
 exec \
-	s6-setuidgid abc /usr/bin/python3 ./diskover.py -d /data -a
+	s6-setuidgid abc /usr/bin/python3 ./diskover.py -d /data -a -n

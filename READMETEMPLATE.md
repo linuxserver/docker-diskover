@@ -52,8 +52,6 @@ For example with a port -p external:internal - what this shows is the port mappi
 So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
 http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
 
-**NOTE:** Email configuration is required for sending out login links even if you don't use email as your method of alerting.
-
 | Parameter | Function |
 | :---: | --- |
 | `-p 1234` | the port(s) |
