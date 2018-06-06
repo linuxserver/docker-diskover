@@ -40,6 +40,7 @@ docker create \
   -e ES_PORT=<ES_PORT> \
   -e ES_USER=<ES_USER> \
   -e ES_PASS=<ES_PASS> \
+  -e INDEX_NAME=<INDEX_NAME> \
   alexphillips/diskover
 ```
 
@@ -59,12 +60,13 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-v /data` | data directory to scan |
 | `-e PGID` | for GroupID, see below for explanation |
 | `-e PUID` | for UserID, see below for explanation |
-| `-e REDIS_HOST` | Redis host |
-| `-e REDIS_PORT` | Redis port |
-| `-e ES_HOST` | ElasticSearch host |
-| `-e ES_PORT` | ElasticSearch port |
-| `-e ES_USER` | ElasticSearch username |
-| `-e ES_PASS` | ElasticSearch password |
+| `-e REDIS_HOST` | Redis host (optional) |
+| `-e REDIS_PORT` | Redis port (optional) |
+| `-e ES_HOST` | ElasticSearch host (optional) |
+| `-e ES_PORT` | ElasticSearch port (optional) |
+| `-e ES_USER` | ElasticSearch username (optional) |
+| `-e ES_PASS` | ElasticSearch password (optional) |
+| `-e INDEX_NAME` | ElasticSearch index name (optional) |
 
 &nbsp;
 
