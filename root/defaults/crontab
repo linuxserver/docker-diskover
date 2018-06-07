@@ -1,0 +1,1 @@
+0 3 * * * /app/diskover/diskover-bot-launcher.sh -r && /app/dispatcher.sh >> /config/log/diskover/dispatcher.log 2>&1

@@ -1,0 +1,9 @@
+/config/log/diskover/*.log {
+        daily
+        rotate 14
+        compress
+        nodateext
+        notifempty
+        missingok
+        su abc abc
+}

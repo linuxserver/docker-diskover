@@ -8,6 +8,10 @@ ES_PORT=${ES_PORT:-9200}
 ES_USER=${ES_USER:-elastic}
 ES_PASS=${ES_PASS:-changeme}
 
+# create folders
+mkdir -p \
+	/config/log/diskover
+
 if [ ! -f "/config/diskover.cfg" ]; then
 	mv /defaults/diskover.cfg /config/diskover.cfg
 	sed -i 's|{{REDIS_HOST}}|'$REDIS_HOST'|g' /config/diskover.cfg
@@ -22,12 +26,28 @@ if [ ! -f "/app/diskover/diskover.cfg" ]; then
 	ln -s /config/diskover.cfg /app/diskover/diskover.cfg
 fi
 
+if [ ! -f "/config/crontab" ]; then
+	cp /deafults/crontab /config/crontab
+fi
+
+if [ ! -f "/etc/crontabs/abc" ]; then
+	if [ $USE_CRON ]; then
+		ln -s /config/crontab /etc/crontabs/abc
+	fi
+fi
+
 # permissions
+chmod +x \
+	/app/dispatcher.sh
 chown -R abc:abc \
 	/app/diskover \
 	/config
 
+# sleep to allow time for elasticsearch to start
+sleep 10
 cd /app/diskover || exit
 
+# run initial retrieval
+echo "Initial run of dispatcher in progress"
 exec \
-	s6-setuidgid abc /bin/bash ./diskover-bot-launcher.sh
+	s6-setuidgid abc /app/dispatcher.sh >> /config/log/diskover/dispatcher.log 2>&1 &

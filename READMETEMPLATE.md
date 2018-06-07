@@ -41,6 +41,8 @@ docker create \
   -e ES_USER=<ES_USER> \
   -e ES_PASS=<ES_PASS> \
   -e INDEX_NAME=<INDEX_NAME> \
+  -e DISPATCH_OPTS=<DISPATCH_OPTS> \
+  -e WORKER_OPTS=<WORKER_OPTS> \
   alexphillips/diskover
 ```
 
@@ -67,6 +69,8 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-e ES_USER` | ElasticSearch username (optional) |
 | `-e ES_PASS` | ElasticSearch password (optional) |
 | `-e INDEX_NAME` | ElasticSearch index name (optional) |
+| `-e DISPATCH_OPTS` | Arguments to pass to the dispatcher (optional) |
+| `-e WORKER_OPTS` | Arguments to pass to the bot launcher (optional) |
 
 &nbsp;
 
