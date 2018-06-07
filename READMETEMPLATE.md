@@ -43,6 +43,7 @@ docker create \
   -e INDEX_NAME=<INDEX_NAME> \
   -e DISPATCH_OPTS=<DISPATCH_OPTS> \
   -e WORKER_OPTS=<WORKER_OPTS> \
+  -e USE_CRON=<USE_CRONS> \
   alexphillips/diskover
 ```
 
@@ -62,15 +63,17 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-v /data` | data directory to scan |
 | `-e PGID` | for GroupID, see below for explanation |
 | `-e PUID` | for UserID, see below for explanation |
-| `-e REDIS_HOST` | Redis host (optional) |
-| `-e REDIS_PORT` | Redis port (optional) |
-| `-e ES_HOST` | ElasticSearch host (optional) |
-| `-e ES_PORT` | ElasticSearch port (optional) |
-| `-e ES_USER` | ElasticSearch username (optional) |
-| `-e ES_PASS` | ElasticSearch password (optional) |
-| `-e INDEX_NAME` | ElasticSearch index name (optional) |
-| `-e DISPATCH_OPTS` | Arguments to pass to the dispatcher (optional) |
-| `-e WORKER_OPTS` | Arguments to pass to the bot launcher (optional) |
+| `-e REDIS_HOST` | Redis host [default: redis] |
+| `-e REDIS_PORT` | Redis port [default: 6379] |
+| `-e ES_HOST` | ElasticSearch host [default: elasticsearch] |
+| `-e ES_PORT` | ElasticSearch port [default: 9200] |
+| `-e ES_USER` | ElasticSearch username [default: elastic] |
+| `-e ES_PASS` | ElasticSearch password [default: changeme] |
+| `-e INDEX_PREFIX` | ElasticSearch index prefix [default: 'diskover-'] |
+| `-e INDEX_NAME` | ElasticSearch index name [default: $INDEX_PREFIX-TIMESTAMP] |
+| `-e DISPATCH_OPTS` | Arguments to pass to the dispatcher [default: '-a -i $INDEX_NAME'] |
+| `-e WORKER_OPTS` | Arguments to pass to the bot launcher [default: ''] |
+| `-e USE_CRON` | Whether the dispatcher should use cron to run on a schedule [default: false] |
 
 &nbsp;
 
