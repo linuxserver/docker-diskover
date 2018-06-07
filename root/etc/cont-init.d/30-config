@@ -27,7 +27,7 @@ if [ ! -f "/app/diskover/diskover.cfg" ]; then
 fi
 
 if [ ! -f "/config/crontab" ]; then
-	cp /deafults/crontab /config/crontab
+	cp /defaults/crontab /config/crontab
 fi
 
 if [ ! -f "/etc/crontabs/abc" ]; then
