@@ -9,6 +9,7 @@ LABEL maintainer="alex-phillips"
 RUN \
  echo "**** install build packages ****" && \
  apk add --no-cache \
+	logrotate \
 	ncurses \
 	python3 && \
  apk add --no-cache --virtual=build-dependencies \
@@ -17,6 +18,8 @@ RUN \
 	musl-dev \
 	python3-dev \
 	py3-pip && \
+ # fix logrotate
+ sed -i "s#/var/log/messages {}.*# #g" /etc/logrotate.conf && \
  echo "**** symlinking python ****" && \
  ln -s /usr/bin/python3 /usr/bin/python && \
  echo "**** install healthchecks ****" && \
@@ -24,6 +27,7 @@ RUN \
  echo "**** install pip packages ****" && \
  cd /app/diskover && \
  pip3 install --no-cache-dir -r requirements.txt && \
+ pip3 install rq-dashboard && \
  echo "**** cleanup ****" && \
  apk del --purge \
 	build-dependencies && \

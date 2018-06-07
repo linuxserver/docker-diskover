@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+
+REDIS_HOST=${REDIS_HOST:-redis}
+REDIS_PORT=${REDIS_PORT:-6379}
+
+exec \
+	s6-setuidgid abc /usr/bin/rq-dashboard -H $REDIS_HOST -P $REDIS_PORT
