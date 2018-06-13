@@ -9,6 +9,7 @@ LABEL maintainer="alex-phillips"
 RUN \
  echo "**** install build packages ****" && \
  apk add --no-cache \
+	grep \
 	logrotate \
 	ncurses \
 	python3 && \

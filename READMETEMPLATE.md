@@ -33,6 +33,7 @@ docker create \
   --name=diskover \
   -v <path to config>:/config \
   -v <path to data>:/data \
+  -v <path to crontab file>:/etc/crontabs/abc \
   -e PGID=<gid> -e PUID=<uid>  \
   -e REDIS_HOST=<REDIS_HOST> \
   -e REDIS_PORT=<REDIS_PORT> \
@@ -41,9 +42,8 @@ docker create \
   -e ES_USER=<ES_USER> \
   -e ES_PASS=<ES_PASS> \
   -e INDEX_NAME=<INDEX_NAME> \
-  -e DISPATCH_OPTS=<DISPATCH_OPTS> \
+  -e DISKOVER_OPTS=<DISKOVER_OPTS> \
   -e WORKER_OPTS=<WORKER_OPTS> \
-  -e USE_CRON=<USE_CRONS> \
   alexphillips/diskover
 ```
 
@@ -61,6 +61,7 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-p 1234` | the port(s) |
 | `-v /config` | diskover config |
 | `-v /data` | data directory to scan |
+| `-v /etc/crontabs/abc` | crontab file to run dispatcher in cron |
 | `-e PGID` | for GroupID, see below for explanation |
 | `-e PUID` | for UserID, see below for explanation |
 | `-e REDIS_HOST` | Redis host [default: redis] |
@@ -71,9 +72,8 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-e ES_PASS` | ElasticSearch password [default: changeme] |
 | `-e INDEX_PREFIX` | ElasticSearch index prefix [default: 'diskover-'] |
 | `-e INDEX_NAME` | ElasticSearch index name [default: $INDEX_PREFIX-TIMESTAMP] |
-| `-e DISPATCH_OPTS` | Arguments to pass to the dispatcher [default: '-a -i $INDEX_NAME'] |
+| `-e DISKOVER_OPTS` | Arguments to pass to the dispatcher [default: '-a -i $INDEX_NAME'] |
 | `-e WORKER_OPTS` | Arguments to pass to the bot launcher [default: ''] |
-| `-e USE_CRON` | Whether the dispatcher should use cron to run on a schedule [default: false] |
 
 &nbsp;
 

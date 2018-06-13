@@ -8,6 +8,20 @@ ES_PORT=${ES_PORT:-9200}
 ES_USER=${ES_USER:-elastic}
 ES_PASS=${ES_PASS:-changeme}
 
+# persist env variables
+if [ ! -f "/config/.env" ]; then
+	echo "export REDIS_HOST="$REDIS_HOST"
+export REDIS_PORT="$REDIS_PORT"
+export ES_HOST="$ES_HOST"
+export ES_PORT="$ES_PORT"
+export ES_USER="$ES_USER"
+export ES_PASS="$ES_PASS"" > /config/.env
+fi
+
+if [ ! -f "/etc/profile.d/diskover.sh" ]; then
+	ln -s /config/.env /etc/profile.d/diskover.sh
+fi
+
 # create folders
 mkdir -p \
 	/config/log/diskover
@@ -30,12 +44,6 @@ if [ ! -f "/config/crontab" ]; then
 	cp /defaults/crontab /config/crontab
 fi
 
-if [ ! -f "/etc/crontabs/abc" ]; then
-	if [ $USE_CRON ]; then
-		ln -s /config/crontab /etc/crontabs/abc
-	fi
-fi
-
 # permissions
 chmod +x \
 	/app/dispatcher.sh
@@ -44,10 +52,12 @@ chown -R abc:abc \
 	/config
 
 # sleep to allow time for elasticsearch to start
-sleep 10
 cd /app/diskover || exit
 
 # run initial retrieval
-echo "Initial run of dispatcher in progress"
-exec \
-	s6-setuidgid abc /app/dispatcher.sh >> /config/log/diskover/dispatcher.log 2>&1 &
+if [ $RUN_ON_START ]; then
+	sleep 10
+	echo "Initial run of dispatcher in progress"
+	exec \
+		s6-setuidgid abc /app/dispatcher.sh >> /config/log/diskover/dispatcher.log 2>&1 &
+fi
