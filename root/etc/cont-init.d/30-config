@@ -24,7 +24,7 @@ fi
 
 # create folders
 mkdir -p \
-	/config/log/diskover
+	/config/{log/diskover,crontabs}
 
 if [ ! -f "/config/diskover.cfg" ]; then
 	mv /defaults/diskover.cfg /config/diskover.cfg
@@ -40,9 +40,13 @@ if [ ! -f "/app/diskover/diskover.cfg" ]; then
 	ln -s /config/diskover.cfg /app/diskover/diskover.cfg
 fi
 
-if [ ! -f "/config/crontab" ]; then
-	cp /defaults/crontab /config/crontab
-fi
+# copy crontab and proxy defaults if needed
+[[ ! -f /config/crontabs/abc ]] && \
+	cp /etc/crontabs/abc /config/crontabs/
+
+# import user crontabs
+rm /etc/crontabs/*
+cp /config/crontabs/* /etc/crontabs/
 
 # permissions
 chmod +x \
