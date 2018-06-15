@@ -46,7 +46,9 @@ fi
 
 # import user crontabs
 rm /etc/crontabs/*
-cp /config/crontabs/* /etc/crontabs/
+if [ $RUN_CRON ]; then
+	cp /config/crontabs/* /etc/crontabs/
+fi
 
 # permissions
 chmod +x \

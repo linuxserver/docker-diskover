@@ -33,7 +33,6 @@ docker create \
   --name=diskover \
   -v <path to config>:/config \
   -v <path to data>:/data \
-  -v <path to crontab file>:/etc/crontabs/abc \
   -e PGID=<gid> -e PUID=<uid>  \
   -e REDIS_HOST=<REDIS_HOST> \
   -e REDIS_PORT=<REDIS_PORT> \
@@ -61,7 +60,6 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-p 1234` | the port(s) |
 | `-v /config` | diskover config |
 | `-v /data` | data directory to scan |
-| `-v /etc/crontabs/abc` | crontab file to run dispatcher in cron |
 | `-e PGID` | for GroupID, see below for explanation |
 | `-e PUID` | for UserID, see below for explanation |
 | `-e REDIS_HOST` | Redis host [default: redis] |
