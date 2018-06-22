@@ -46,7 +46,7 @@ fi
 
 # import user crontabs
 rm /etc/crontabs/*
-if [ $RUN_CRON ]; then
+if [ $USE_CRON ]; then
 	cp /config/crontabs/* /etc/crontabs/
 fi
 
