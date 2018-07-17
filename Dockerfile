@@ -21,8 +21,8 @@ RUN \
 	php7-session \
 	python3 && \
  apk add --no-cache --virtual=build-dependencies \
+ 	curl \
 	gcc \
-	git \
 	musl-dev \
 	python3-dev \
 	py3-pip && \
@@ -31,10 +31,19 @@ RUN \
  echo "**** symlinking python ****" && \
  ln -s /usr/bin/python3 /usr/bin/python && \
  echo "**** install diskover ****" && \
- git clone https://github.com/shirosaidev/diskover.git /app/diskover && \
- cd /app/diskover && \
- git checkout tags/v1.5.0-rc10 && \
+ mkdir -p /app/diskover && \
+ if [ -z ${DISKOVER_RELEASE+x} ]; then \
+        DISKOVER_RELEASE=$(curl -sX GET "https://api.github.com/repos/shirosaidev/diskover/releases/latest" \
+        | awk '/tag_name/{print $4;exit}' FS='[""]'); \
+ fi && \
+ curl -o \
+ /tmp/diskover.tar.gz -L \
+        "https://github.com/shirosaidev/diskover/archive/${DISKOVER_RELEASE}.tar.gz" && \
+ tar xf \
+ /tmp/diskover.tar.gz -C \
+        /app/diskover/ --strip-components=1 && \
  echo "**** install pip packages ****" && \
+ cd /app/diskover && \
  pip3 install --no-cache-dir -r requirements.txt && \
  pip3 install rq-dashboard && \
  echo "**** install composer ****" && \
@@ -45,10 +54,19 @@ RUN \
  mv composer.phar /usr/bin/composer && \
  /usr/bin/composer self-update && \
  echo "**** install diskover-web ****" && \
- git clone https://github.com/shirosaidev/diskover-web.git /app/diskover-web && \
- cd /app/diskover-web && \
- git checkout tags/v1.5.0-rc10 && \
+ mkdir -p /app/diskover-web && \
+ if [ -z ${DISKOVER_WEB_RELEASE+x} ]; then \
+        DISKOVER_WEB_RELEASE=$(curl -sX GET "https://api.github.com/repos/shirosaidev/diskover-web/releases/latest" \
+        | awk '/tag_name/{print $4;exit}' FS='[""]'); \
+ fi && \
+ curl -o \
+ /tmp/diskover-web.tar.gz -L \
+        "https://github.com/shirosaidev/diskover-web/archive/${DISKOVER_WEB_RELEASE}.tar.gz" && \
+ tar xf \
+ /tmp/diskover-web.tar.gz -C \
+        /app/diskover-web/ --strip-components=1 && \
  echo "**** install composer packages ****" && \
+ cd /app/diskover-web && \
  /usr/bin/composer install && \
  echo "**** cleanup ****" && \
  apk del --purge \
