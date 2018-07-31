@@ -5,7 +5,9 @@
 TODAY=$(date +%Y-%m-%d)
 INDEX_PREFIX=${INDEX_PREFIX:-diskover-}
 INDEX_NAME=${INDEX_NAME:-$INDEX_PREFIX$TODAY}
-DISKOVER_OPTS=${DISKOVER_OPTS:-"-d /data -a -i $INDEX_NAME"}
+DISKOVER_OPTS=${DISKOVER_OPTS:-"-d /data -a"}
+
+DISKOVER_OPTS="$DISKOVER_OPTS -i $INDEX_NAME"
 
 cd /app/diskover || exit
 
