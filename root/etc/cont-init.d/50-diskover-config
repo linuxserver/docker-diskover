@@ -1,21 +1,25 @@
 #!/usr/bin/with-contenv bash
 
 # set default values for variables
-REDIS_HOST=${REDIS_HOST:-redis}
-REDIS_PORT=${REDIS_PORT:-6379}
-ES_HOST=${ES_HOST:-elasticsearch}
-ES_PORT=${ES_PORT:-9200}
-ES_USER=${ES_USER:-elastic}
-ES_PASS=${ES_PASS:-changeme}
+declare -A DISKOVER_CONF
+DISKOVER_CONF[REDIS_HOST]=${REDIS_HOST:-redis}
+DISKOVER_CONF[REDIS_PORT]=${REDIS_PORT:-6379}
+DISKOVER_CONF[ES_HOST]=${ES_HOST:-elasticsearch}
+DISKOVER_CONF[ES_PORT]=${ES_PORT:-9200}
+DISKOVER_CONF[ES_USER]=${ES_USER:-elastic}
+DISKOVER_CONF[ES_PASS]=${ES_PASS:-changeme}
+DISKOVER_CONF[RUN_ON_START]=${RUN_ON_START:-false}
+DISKOVER_CONF[USE_CRON]=${USE_CRON:-false}
 
 # persist env variables
 if [ ! -f "/config/.env" ]; then
-	echo "export REDIS_HOST="$REDIS_HOST"
-export REDIS_PORT="$REDIS_PORT"
-export ES_HOST="$ES_HOST"
-export ES_PORT="$ES_PORT"
-export ES_USER="$ES_USER"
-export ES_PASS="$ES_PASS"" > /config/.env
+	# sed in values or skip if value not set
+	for KEY in "${!DISKOVER_CONF[@]}"; do \
+	if [[ ${DISKOVER_CONF[$KEY]} == "" ]]; then \
+	:
+	else echo "export $KEY=${DISKOVER_CONF[$KEY]}" >> /config/.env
+	fi
+	done
 fi
 
 if [ ! -f "/etc/profile.d/diskover.sh" ]; then
@@ -28,12 +32,12 @@ mkdir -p \
 
 if [ ! -f "/config/diskover.cfg" ]; then
 	mv /defaults/diskover.cfg /config/diskover.cfg
-	sed -i 's|{{REDIS_HOST}}|'$REDIS_HOST'|g' /config/diskover.cfg
-	sed -i 's|{{REDIS_PORT}}|'$REDIS_PORT'|g' /config/diskover.cfg
-	sed -i 's|{{ES_HOST}}|'$ES_HOST'|g' /config/diskover.cfg
-	sed -i 's|{{ES_PORT}}|'$ES_PORT'|g' /config/diskover.cfg
-	sed -i 's|{{ES_USER}}|'$ES_USER'|g' /config/diskover.cfg
-	sed -i 's|{{ES_PASS}}|'$ES_PASS'|g' /config/diskover.cfg
+	for KEY in "${!DISKOVER_CONF[@]}"; do \
+	if [[ ${DISKOVER_CONF[$KEY]} == "" ]]; then \
+	:
+	else sed -i 's|{{'$KEY'}}|'${DISKOVER_CONF[$KEY]}'|g' /config/diskover.cfg
+	fi
+	done
 fi
 
 if [ ! -f "/app/diskover/diskover.cfg" ]; then
@@ -46,7 +50,7 @@ fi
 
 # import user crontabs
 rm /etc/crontabs/*
-if [ $USE_CRON ]; then
+if [ ${DISKOVER_CONF[USE_CRON]} == true ]; then
 	cp /config/crontabs/* /etc/crontabs/
 fi
 
@@ -57,13 +61,11 @@ chown -R abc:abc \
 	/app/diskover \
 	/config
 
-# sleep to allow time for elasticsearch to start
-cd /app/diskover || exit
-
 # run initial retrieval
-if [ $RUN_ON_START ]; then
-	sleep 10
+if [ ${DISKOVER_CONF[RUN_ON_START]} == true ]; then
 	echo "Initial run of dispatcher in progress"
+	# sleep to allow time for elasticsearch to start
+	sleep 10
 	exec \
 		s6-setuidgid abc /app/dispatcher.sh >> /config/log/diskover/dispatcher.log 2>&1 &
 fi
