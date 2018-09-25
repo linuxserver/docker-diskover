@@ -6,10 +6,12 @@
 declare -A DISKOVER_ARRAY
 DISKOVER_ARRAY[TODAY]=$(date +%Y-%m-%d)
 DISKOVER_ARRAY[INDEX_PREFIX]=${INDEX_PREFIX:-diskover-}
-DISKOVER_ARRAY[INDEX_NAME]=${INDEX_NAME:-$INDEX_PREFIX$TODAY}
+DISKOVER_ARRAY[INDEX_NAME]=${INDEX_NAME:-${DISKOVER_ARRAY[INDEX_PREFIX]}${DISKOVER_ARRAY[TODAY]}}
 DISKOVER_ARRAY[DISKOVER_OPTS]=${DISKOVER_OPTS:-"-d /data -a"}
+DISKOVER_ARRAY[REDIS_HOST]=${REDIS_HOST:-redis}
+DISKOVER_ARRAY[REDIS_PORT]=${REDIS_PORT:-6379}
 
-DISKOVER_OPTS="$DISKOVER_OPTS -i $INDEX_NAME"
+DISKOVER_ARRAY[DISKOVER_OPTS]="${DISKOVER_ARRAY[DISKOVER_OPTS]} -i ${DISKOVER_ARRAY[INDEX_NAME]}"
 
 cd /app/diskover || exit
 
@@ -22,9 +24,9 @@ fi
 
 # empty existing redis queue
 echo "emptying current redis queues..."
-rq empty -u redis://$REDIS_HOST:$REDIS_PORT diskover_crawl
+rq empty -u redis://${DISKOVER_ARRAY[REDIS_HOST]}:${DISKOVER_ARRAY[REDIS_PORT]} diskover_crawl
 sleep 3
-rq empty -u redis://$REDIS_HOST:$REDIS_PORT failed
+rq empty -u redis://${DISKOVER_ARRAY[REDIS_HOST]}:${DISKOVER_ARRAY[REDIS_PORT]} failed
 sleep 3
 
 echo "killing dangling workers..."
