@@ -1,6 +1,0 @@
-#!/usr/bin/with-contenv bash
-
-cd /app/diskover-web/public || exit
-
-exec \
-	s6-setuidgid abc /usr/bin/php -S 0.0.0.0:8000
