@@ -1,0 +1,50 @@
+---
+
+# project information
+project_name: diskover
+project_url: "https://github.com/shirosaidev/diskover"
+# project_logo: "https://camo.githubusercontent.com/e0694ef783e3fd1d74e6776b28822ced01c7cc17/687474703a2f2f6f73732e6f6574696b65722e63682f736d6f6b6570696e672f696e632f736d6f6b6570696e672d6c6f676f2e706e67"
+project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is a file system crawler, disk space usage, file search engine and file system analytics powered by Elasticsearch"
+project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+
+# supported architectures
+available_architectures:
+  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
+  - { arch: "{{ arch_armhf }}", tag: "arm32v6-latest"}
+
+# container parameters
+common_param_env_vars_enabled: true #PGID, PUID, etc
+param_container_name: "{{ project_name }}"
+param_usage_include_vols: true
+param_volumes:
+  - { vol_path: "/config", vol_host_path: "</path/to/{{ project_name }}/config>", desc: "Persistent config files" }
+  - { vol_path: "/data", vol_host_path: "</path/to/{{ project_name }}/data>", desc: "Default mount point to crawl" }
+param_usage_include_ports: true
+param_ports:
+  - { external_port: "80", internal_port: "80", port_desc: "diskover Web UI" }
+  - { external_port: "9181", internal_port: "9181", port_desc: "rq-dashboard web UI" }
+  - { external_port: "9999", internal_port: "9999", port_desc: "diskover socket server" }
+param_usage_include_env: true
+param_env_vars:
+  - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London"}
+  - { env_var: "REDIS_HOST", env_value: "redis", desc: "Redis host (optional)"}
+  - { env_var: "REDIS_PORT", env_value: "6379", desc: "Redis port (optional)"}
+  - { env_var: "ES_HOST", env_value: "elasticsearch", desc: "ElasticSearch host (optional)"}
+  - { env_var: "ES_PORT", env_value: "6379", desc: "ElasticSearch port (optional)"}
+  - { env_var: "ES_USER", env_value: "elasticsearch", desc: "ElasticSearch username (optional)"}
+  - { env_var: "ES_PASS", env_value: "changeme", desc: "ElasticSearch password (optional)"}
+  - { env_var: "INDEX_NAME", env_value: "diskover-", desc: "Index name prefix (optional)"}
+  - { env_var: "DISKOVER_OPTS", env_value: "", desc: "Optional arguments to pass to the diskover crawler (optional)"}
+  - { env_var: "WORKER_OPTS", env_value: "", desc: "Optional argumens to pass to the diskover bots launcher (optional)"}
+  - { env_var: "RUN_ON_START", env_value: "true", desc: "Initiate a crawl every time the container is started (optional)"}
+  - { env_var: "USE_CRON", env_value: "true", desc: "Run a crawl on as a cron job (optional)"}
+
+# application setup block
+app_setup_block_enabled: true
+app_setup_block: |
+  - Once running the URL will be `http://<host-ip>/`.
+  - Basics are, edit the `diskover.cfg` file to alter any configurations including tagging, threads, etc.
+
+# changelog
+changelogs:
