@@ -3,7 +3,7 @@
 # project information
 project_name: diskover
 project_url: "https://github.com/shirosaidev/diskover"
-# project_logo: "https://camo.githubusercontent.com/e0694ef783e3fd1d74e6776b28822ced01c7cc17/687474703a2f2f6f73732e6f6574696b65722e63682f736d6f6b6570696e672f696e632f736d6f6b6570696e672d6c6f676f2e706e67"
+project_logo: "https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is a file system crawler, disk space usage, file search engine and file system analytics powered by Elasticsearch"
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 
@@ -48,3 +48,4 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "05.10.18:", desc: "Initial Release" }
