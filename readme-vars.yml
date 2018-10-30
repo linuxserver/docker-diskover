@@ -3,7 +3,7 @@
 # project information
 project_name: diskover
 project_url: "https://github.com/shirosaidev/diskover"
-# project_logo: "https://camo.githubusercontent.com/e0694ef783e3fd1d74e6776b28822ced01c7cc17/687474703a2f2f6f73732e6f6574696b65722e63682f736d6f6b6570696e672f696e632f736d6f6b6570696e672d6c6f676f2e706e67"
+project_logo: "https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is a file system crawler, disk space usage, file search engine and file system analytics powered by Elasticsearch"
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 
@@ -45,6 +45,30 @@ app_setup_block_enabled: true
 app_setup_block: |
   - Once running the URL will be `http://<host-ip>/`.
   - Basics are, edit the `diskover.cfg` file to alter any configurations including tagging, threads, etc.
+  - Although we recommend using the official Redis and ElasticSearch (5.6.9) containers and don't support them ourselves,
+    below are basic docker-compose examples for using the official images with diskover:
+    ```
+    version: '3'
+    services:
+      elasticsearch:
+        container_name: elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
+        volumes:
+          - ${DOCKER_HOME}/elasticsearch/data:/usr/share/elasticsearch/data
+        environment:
+          - bootstrap.memory_lock=true
+          - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+        ulimits:
+          memlock:
+            soft: -1
+            hard: -1
+      redis:
+        container_name: redis
+        image: redis:alpine
+        volumes:
+          - ${HOME}/docker/redis:/data
+    ```
 
 # changelog
 changelogs:
+  - { date: "27.09.17:", desc: "Initial Release." }
