@@ -40,7 +40,6 @@ param_env_vars:
   - { env_var: "RUN_ON_START", env_value: "true", desc: "Initiate a crawl every time the container is started (optional)"}
   - { env_var: "USE_CRON", env_value: "true", desc: "Run a crawl on as a cron job (optional)"}
 
-optional_parameters: False
 custom_compose: |
   version: '2'
   services:
