@@ -40,34 +40,57 @@ param_env_vars:
   - { env_var: "RUN_ON_START", env_value: "true", desc: "Initiate a crawl every time the container is started (optional)"}
   - { env_var: "USE_CRON", env_value: "true", desc: "Run a crawl on as a cron job (optional)"}
 
+optional_parameters: False
+custom_compose: |
+  version: '2'
+  services:
+    diskover:
+      image: linuxserver/diskover
+      container_name: diskover
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Europe/London
+        - REDIS_HOST=redis
+        - REDIS_PORT=6379
+        - ES_HOST=elasticsearch
+        - ES_PORT=6379
+        - ES_USER=elasticsearch
+        - ES_PASS=changeme
+        - RUN_ON_START=true
+        - USE_CRON=true
+      volumes:
+        - </path/to/diskover/config>:/config
+        - </path/to/diskover/data>:/data
+      ports:
+        - 80:80
+        - 9181:9181
+        - 9999:9999
+      mem_limit: 4096m
+      restart: unless-stopped
+    elasticsearch:
+      container_name: elasticsearch
+      image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
+      volumes:
+        - ${DOCKER_HOME}/elasticsearch/data:/usr/share/elasticsearch/data
+      environment:
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+    redis:
+      container_name: redis
+      image: redis:alpine
+      volumes:
+        - ${HOME}/docker/redis:/data
+
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
   - Once running the URL will be `http://<host-ip>/`.
   - Basics are, edit the `diskover.cfg` file to alter any configurations including tagging, threads, etc.
-  - Although we recommend using the official Redis and ElasticSearch (5.6.9) containers and don't support them ourselves,
-    below are basic docker-compose examples for using the official images with diskover:
-    ```
-    version: '3'
-    services:
-      elasticsearch:
-        container_name: elasticsearch
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
-        volumes:
-          - ${DOCKER_HOME}/elasticsearch/data:/usr/share/elasticsearch/data
-        environment:
-          - bootstrap.memory_lock=true
-          - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
-        ulimits:
-          memlock:
-            soft: -1
-            hard: -1
-      redis:
-        container_name: redis
-        image: redis:alpine
-        volumes:
-          - ${HOME}/docker/redis:/data
-    ```
 
 # changelog
 changelogs:
