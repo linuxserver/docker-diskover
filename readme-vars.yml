@@ -40,12 +40,70 @@ param_env_vars:
   - { env_var: "RUN_ON_START", env_value: "true", desc: "Initiate a crawl every time the container is started (optional)"}
   - { env_var: "USE_CRON", env_value: "true", desc: "Run a crawl on as a cron job (optional)"}
 
+custom_compose: |
+  version: '2'
+  services:
+    diskover:
+      image: linuxserver/diskover
+      container_name: diskover
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Europe/London
+        - REDIS_HOST=redis
+        - REDIS_PORT=6379
+        - ES_HOST=elasticsearch
+        - ES_PORT=9200
+        - ES_USER=elastic
+        - ES_PASS=changeme
+        - INDEX_NAME=diskover-
+        - RUN_ON_START=true
+        - USE_CRON=true
+      volumes:
+        - </path/to/diskover/config>:/config
+        - </path/to/diskover/data>:/data
+      ports:
+        - 80:80
+        - 9181:9181
+        - 9999:9999
+      mem_limit: 4096m
+      restart: unless-stopped
+      depends_on:
+        - elasticsearch
+        - redis
+    elasticsearch:
+      container_name: elasticsearch
+      image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
+      volumes:
+        - ${DOCKER_HOME}/elasticsearch/data:/usr/share/elasticsearch/data
+      environment:
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+    redis:
+      container_name: redis
+      image: redis:alpine
+      volumes:
+        - ${HOME}/docker/redis:/data
+
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
-  - Once running the URL will be `http://<host-ip>/`.
-  - Basics are, edit the `diskover.cfg` file to alter any configurations including tagging, threads, etc.
+  Once running the URL will be `http://<host-ip>/` initial application spinup will take some time so please reload if you get an empty response. We highly reccomend using Docker compose for this image as it includes multiple database backends to link into.
+  If you are looking to mount the elasticsearch and redis data to your host machine for access neither of them currently support setting a custom UID or GID they will run by default as:
+
+  - Redis - UID=999 GID=999
+  - Elasticsearch - UID=1000 GID=1000
+
+  If you simply want the application to work you can mount these to folders with 0777 permissions, otherwise you will need to create these users host level and set the folder ownership properly.
+
+  By default this compose example is pointed to a single directory and the UID and GID you pass to the diskover container needs to match that folders ownership. If these are shared folders with many owners the indexing will likely fail.
+
+  For specific questions or help setting up diskover in your environment please refer to the project's Github page [{{ project_name|capitalize }}]({{ project_url }}).
 
 # changelog
 changelogs:
-  - { date: "05.10.18:", desc: "Initial Release" }
+  - { date: "01.11.18:", desc: "Initial Release." }

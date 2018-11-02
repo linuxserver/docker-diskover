@@ -12,7 +12,7 @@ Find us at:
 * [Discord](https://discord.gg/YWrKVTn) - realtime support / chat with the community and the team.
 * [IRC](https://irc.linuxserver.io) - on freenode at `#linuxserver.io`. Our primary support channel is Discord.
 * [Blog](https://blog.linuxserver.io) - all the things you can do with our containers including How-To guides, opinions and much more!
-* [Podcast](https://podcast.linuxserver.io) - on hiatus. Coming back soon (late 2018).
+* [Podcast](https://anchor.fm/linuxserverio) - on hiatus. Coming back soon (late 2018).
 
 # PSA: Changes are happening
 
@@ -79,25 +79,22 @@ docker create \
 Compatible with docker-compose v2 schemas.
 
 ```
----
-version: "2"
+version: '2'
 services:
   diskover:
     image: linuxserver/diskover
     container_name: diskover
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/London
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - ES_HOST=elasticsearch
-      - ES_PORT=6379
-      - ES_USER=elasticsearch
+      - ES_PORT=9200
+      - ES_USER=elastic
       - ES_PASS=changeme
       - INDEX_NAME=diskover-
-      - DISKOVER_OPTS=
-      - WORKER_OPTS=
       - RUN_ON_START=true
       - USE_CRON=true
     volumes:
@@ -109,6 +106,27 @@ services:
       - 9999:9999
     mem_limit: 4096m
     restart: unless-stopped
+    depends_on:
+      - elasticsearch
+      - redis
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
+    volumes:
+      - ${DOCKER_HOME}/elasticsearch/data:/usr/share/elasticsearch/data
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+  redis:
+    container_name: redis
+    image: redis:alpine
+    volumes:
+      - ${HOME}/docker/redis:/data
+
 ```
 
 ## Parameters
@@ -153,8 +171,17 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 &nbsp;
 ## Application Setup
 
-- Once running the URL will be `http://<host-ip>/`.
-- Basics are, edit the `diskover.cfg` file to alter any configurations including tagging, threads, etc.
+Once running the URL will be `http://<host-ip>/` initial application spinup will take some time so please reload if you get an empty response. We highly reccomend using Docker compose for this image as it includes multiple database backends to link into.
+If you are looking to mount the elasticsearch and redis data to your host machine for access neither of them currently support setting a custom UID or GID they will run by default as:
+
+- Redis - UID=999 GID=999
+- Elasticsearch - UID=1000 GID=1000
+
+If you simply want the application to work you can mount these to folders with 0777 permissions, otherwise you will need to create these users host level and set the folder ownership properly.
+
+By default this compose example is pointed to a single directory and the UID and GID you pass to the diskover container needs to match that folders ownership. If these are shared folders with many owners the indexing will likely fail.
+
+For specific questions or help setting up diskover in your environment please refer to the project's Github page [Diskover](https://github.com/shirosaidev/diskover).
 
 
 
@@ -169,4 +196,4 @@ In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as bel
 
 ## Versions
 
-* **05.10.18:** - Initial Release
+* **01.11.18:** - Initial Release.
