@@ -88,6 +88,7 @@ custom_compose: |
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
+  - ElasticSearch requires a sysctl setting to run properly on the host machine. Running `sysctl -w vm.max_map_count=262144` will solve this issue. To make this setting persistent through reboots, set this value in `/etc/sysctl.conf`.
   - Once running the URL will be `http://<host-ip>/`.
   - Basics are, edit the `diskover.cfg` file to alter any configurations including tagging, threads, etc.
 
