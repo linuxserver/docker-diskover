@@ -98,6 +98,8 @@ app_setup_block: |
   - Redis - UID=999 GID=999
   - Elasticsearch - UID=1000 GID=1000
 
+  ElasticSearch also requires a sysctl setting on the host machine to run properly. Running `sysctl -w vm.max_map_count=262144` will solve this issue. To make this setting persistent through reboots, set this value in `/etc/sysctl.conf`.
+
   If you simply want the application to work you can mount these to folders with 0777 permissions, otherwise you will need to create these users host level and set the folder ownership properly.
 
   By default this compose example is pointed to a single directory and the UID and GID you pass to the diskover container needs to match that folders ownership. If these are shared folders with many owners the indexing will likely fail.
