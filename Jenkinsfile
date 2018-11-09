@@ -14,6 +14,7 @@ pipeline {
     BUILD_VERSION_ARG = 'DISKOVER_VERSION'
     LS_USER = 'linuxserver'
     LS_REPO = 'docker-diskover'
+    CONTAINER_NAME='diskover'
     DOCKERHUB_IMAGE = 'linuxserver/diskover'
     DEV_DOCKERHUB_IMAGE = 'lsiodev/diskover'
     PR_DOCKERHUB_IMAGE = 'lspipepr/diskover'
