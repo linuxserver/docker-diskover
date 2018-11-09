@@ -56,7 +56,6 @@ custom_compose: |
         - ES_PORT=9200
         - ES_USER=elastic
         - ES_PASS=changeme
-        - INDEX_NAME=diskover-
         - RUN_ON_START=true
         - USE_CRON=true
       volumes:

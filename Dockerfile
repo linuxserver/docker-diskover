@@ -10,6 +10,7 @@ LABEL maintainer="alex-phillips"
 RUN \
  echo "**** install build packages ****" && \
  apk add --no-cache --virtual=build-dependencies \
+	composer \
 	curl \
 	gcc \
 	musl-dev \
@@ -22,10 +23,6 @@ RUN \
 	php7-curl \
 	php7-phar \
 	python3 && \
- echo "**** install composer ****" && \
- curl \
- 	-sS https://getcomposer.org/installer \
-	| php -- --install-dir=/usr/bin --filename=composer && \
  echo "**** install diskover ****" && \
  mkdir -p /app/diskover && \
  if [ -z ${DISKOVER_RELEASE+x} ]; then \
