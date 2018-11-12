@@ -1,4 +1,7 @@
-FROM lsiobase/alpine.nginx:3.8
+FROM lsiobase/alpine.nginx.arm64:3.8
+
+# Add qemu to build on x86_64 systems
+COPY qemu-aarch64-static /usr/bin
 
 # set version label
 ARG BUILD_DATE
@@ -10,7 +13,6 @@ LABEL maintainer="alex-phillips"
 RUN \
  echo "**** install build packages ****" && \
  apk add --no-cache --virtual=build-dependencies \
-	composer \
 	curl \
 	gcc \
 	musl-dev \
@@ -23,6 +25,10 @@ RUN \
 	php7-curl \
 	php7-phar \
 	python3 && \
+ echo "**** install composer ****" && \
+ curl \
+ 	-sS https://getcomposer.org/installer \
+	| php -- --install-dir=/usr/bin --filename=composer && \
  echo "**** install diskover ****" && \
  mkdir -p /app/diskover && \
  if [ -z ${DISKOVER_RELEASE+x} ]; then \
