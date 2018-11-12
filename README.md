@@ -21,6 +21,7 @@ From August 2018 onwards, Linuxserver are in the midst of switching to a new CI 
 TLDR: Multi-arch support is changing from multiple repos to one repo per container image.
 
 # [linuxserver/diskover](https://github.com/linuxserver/docker-diskover)
+[![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
 [![](https://images.microbadger.com/badges/version/linuxserver/diskover.svg)](https://microbadger.com/images/linuxserver/diskover "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/linuxserver/diskover.svg)](https://microbadger.com/images/linuxserver/diskover "Get your own version badge on microbadger.com")
 ![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/diskover.svg)
@@ -70,6 +71,7 @@ docker create \
   -p 9999:9999 \
   -v </path/to/diskover/config>:/config \
   -v </path/to/diskover/data>:/data \
+  --restart unless-stopped
   linuxserver/diskover
 ```
 
@@ -94,7 +96,6 @@ services:
       - ES_PORT=9200
       - ES_USER=elastic
       - ES_PASS=changeme
-      - INDEX_NAME=diskover-
       - RUN_ON_START=true
       - USE_CRON=true
     volumes:
@@ -176,6 +177,8 @@ If you are looking to mount the elasticsearch and redis data to your host machin
 
 - Redis - UID=999 GID=999
 - Elasticsearch - UID=1000 GID=1000
+
+ElasticSearch also requires a sysctl setting on the host machine to run properly. Running `sysctl -w vm.max_map_count=262144` will solve this issue. To make this setting persistent through reboots, set this value in `/etc/sysctl.conf`.
 
 If you simply want the application to work you can mount these to folders with 0777 permissions, otherwise you will need to create these users host level and set the folder ownership properly.
 
