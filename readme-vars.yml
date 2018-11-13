@@ -4,7 +4,7 @@
 project_name: diskover
 project_url: "https://github.com/shirosaidev/diskover"
 project_logo: "https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png"
-project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is a file system crawler, disk space usage, file search engine and file system analytics powered by Elasticsearch"
+project_blurb: "[{{ project_name }}]({{ project_url }}) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 
 # supported architectures
