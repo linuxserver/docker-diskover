@@ -27,7 +27,7 @@ TLDR: Multi-arch support is changing from multiple repos to one repo per contain
 ![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/diskover.svg)
 ![Docker Stars](https://img.shields.io/docker/stars/linuxserver/diskover.svg)
 
-[Diskover](https://github.com/shirosaidev/diskover) is a file system crawler, disk space usage, file search engine and file system analytics powered by Elasticsearch
+[diskover](https://github.com/shirosaidev/diskover) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems.
 
 [![diskover](https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png)](https://github.com/shirosaidev/diskover)
 
