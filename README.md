@@ -71,7 +71,7 @@ docker create \
   -p 9999:9999 \
   -v </path/to/diskover/config>:/config \
   -v </path/to/diskover/data>:/data \
-  --restart unless-stopped
+  --restart unless-stopped \
   linuxserver/diskover
 ```
 
