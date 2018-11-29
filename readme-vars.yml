@@ -31,8 +31,8 @@ param_env_vars:
   - { env_var: "REDIS_HOST", env_value: "redis", desc: "Redis host (optional)"}
   - { env_var: "REDIS_PORT", env_value: "6379", desc: "Redis port (optional)"}
   - { env_var: "ES_HOST", env_value: "elasticsearch", desc: "ElasticSearch host (optional)"}
-  - { env_var: "ES_PORT", env_value: "6379", desc: "ElasticSearch port (optional)"}
-  - { env_var: "ES_USER", env_value: "elasticsearch", desc: "ElasticSearch username (optional)"}
+  - { env_var: "ES_PORT", env_value: "9200", desc: "ElasticSearch port (optional)"}
+  - { env_var: "ES_USER", env_value: "elastic", desc: "ElasticSearch username (optional)"}
   - { env_var: "ES_PASS", env_value: "changeme", desc: "ElasticSearch password (optional)"}
   - { env_var: "INDEX_NAME", env_value: "diskover-", desc: "Index name prefix (optional)"}
   - { env_var: "DISKOVER_OPTS", env_value: "", desc: "Optional arguments to pass to the diskover crawler (optional)"}
