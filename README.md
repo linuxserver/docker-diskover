@@ -58,8 +58,8 @@ docker create \
   -e REDIS_HOST=redis \
   -e REDIS_PORT=6379 \
   -e ES_HOST=elasticsearch \
-  -e ES_PORT=6379 \
-  -e ES_USER=elasticsearch \
+  -e ES_PORT=9200 \
+  -e ES_USER=elastic \
   -e ES_PASS=changeme \
   -e INDEX_NAME=diskover- \
   -e DISKOVER_OPTS= \
@@ -145,8 +145,8 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e REDIS_HOST=redis` | Redis host (optional) |
 | `-e REDIS_PORT=6379` | Redis port (optional) |
 | `-e ES_HOST=elasticsearch` | ElasticSearch host (optional) |
-| `-e ES_PORT=6379` | ElasticSearch port (optional) |
-| `-e ES_USER=elasticsearch` | ElasticSearch username (optional) |
+| `-e ES_PORT=9200` | ElasticSearch port (optional) |
+| `-e ES_USER=elastic` | ElasticSearch username (optional) |
 | `-e ES_PASS=changeme` | ElasticSearch password (optional) |
 | `-e INDEX_NAME=diskover-` | Index name prefix (optional) |
 | `-e DISKOVER_OPTS=` | Optional arguments to pass to the diskover crawler (optional) |
