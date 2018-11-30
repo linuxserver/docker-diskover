@@ -24,9 +24,7 @@ fi
 
 # empty existing redis queue
 echo "emptying current redis queues..."
-rq empty -u redis://${DISKOVER_ARRAY[REDIS_HOST]}:${DISKOVER_ARRAY[REDIS_PORT]} diskover_crawl
-sleep 3
-rq empty -u redis://${DISKOVER_ARRAY[REDIS_HOST]}:${DISKOVER_ARRAY[REDIS_PORT]} failed
+rq empty -u redis://${DISKOVER_ARRAY[REDIS_HOST]}:${DISKOVER_ARRAY[REDIS_PORT]} diskover_crawl diskover diskover_calcdir failed
 sleep 3
 
 echo "killing dangling workers..."
