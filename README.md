@@ -228,5 +228,6 @@ Below are the instructions for updating containers:
 
 ## Versions
 
+* **12.04.19:** - Rebase to Alpine 3.9.
 * **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **01.11.18:** - Initial Release.
