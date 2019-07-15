@@ -16,7 +16,7 @@ DISKOVER_ARRAY[DISKOVER_OPTS]="${DISKOVER_ARRAY[DISKOVER_OPTS]} -i ${DISKOVER_AR
 
 cd /app/diskover || exit
 
-BASH_ENV=<(declare -p DISKOVER_ARRAY) /bin/bash /app/cleanup.sh
+/bin/bash /app/cleanup.sh
 
 echo "starting workers with following options: ${DISKOVER_ARRAY[WORKER_OPTS]}"
 /bin/bash /app/diskover/diskover-bot-launcher.sh ${DISKOVER_ARRAY[WORKER_OPTS]}
