@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
 
 # killing existing workers before starting new ones
 echo "killing existing workers..."
