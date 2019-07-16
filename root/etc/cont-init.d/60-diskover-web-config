@@ -40,7 +40,7 @@ if [ ! -f "/app/diskover-web/public/smartsearches.txt" ]; then
 fi
 
 if [ ! -f "/config/customtags.txt.sample" ]; then
-	cp /app/diskover-web/public/customtags.txt.sample /config/customtags.txt
+	cp /app/diskover-web/public/customtags.txt.sample /config/customtags.txt.sample
 fi
 
 if [ ! -f "/app/diskover-web/public/customtags.txt" ]; then
