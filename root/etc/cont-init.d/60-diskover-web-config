@@ -2,7 +2,7 @@
 
 if [ $DISABLE_WEB ]; then
     echo "Not running web UI"
-	exit
+        exit
 fi
 
 # set default values for variables
@@ -13,49 +13,49 @@ WEB_CONF[ES_USER]=${ES_USER:-elastic}
 WEB_CONF[ES_PASS]=${ES_PASS:-changeme}
 
 if [ ! -f "/config/Constants.php" ]; then
-	cp /app/diskover-web/src/diskover/Constants.php.sample /config/Constants.php
-	sed -i "s|ES_HOST = 'localhost'|ES_HOST = '"${WEB_CONF[ES_HOST]}"'|g" /config/Constants.php
-	sed -i "s|ES_PORT = 9200|ES_PORT = "${WEB_CONF[ES_PORT]}"|g" /config/Constants.php
-	sed -i "s|ES_USER = ''|ES_USER = '"${WEB_CONF[ES_USER]}"'|g" /config/Constants.php
-	sed -i "s|ES_PASS = ''|ES_PASS = '"${WEB_CONF[ES_PASS]}"'|g" /config/Constants.php
-	sed -i "s|ENABLE_SOCKET_CLIENT = FALSE|ENABLE_SOCKET_CLIENT = true|g" /config/Constants.php
-	sed -i "s|SOCKET_LISTENER_HOST = '127.0.0.1'|SOCKET_LISTENER_HOST = 'diskover'|g" /config/Constants.php
+        cp /app/diskover-web/src/diskover/Constants.php.sample /config/Constants.php
+        sed -i "s|ES_HOST = 'localhost'|ES_HOST = '"${WEB_CONF[ES_HOST]}"'|g" /config/Constants.php
+        sed -i "s|ES_PORT = 9200|ES_PORT = "${WEB_CONF[ES_PORT]}"|g" /config/Constants.php
+        sed -i "s|ES_USER = ''|ES_USER = '"${WEB_CONF[ES_USER]}"'|g" /config/Constants.php
+        sed -i "s|ES_PASS = ''|ES_PASS = '"${WEB_CONF[ES_PASS]}"'|g" /config/Constants.php
+        sed -i "s|ENABLE_SOCKET_CLIENT = FALSE|ENABLE_SOCKET_CLIENT = true|g" /config/Constants.php
+        sed -i "s|SOCKET_LISTENER_HOST = '127.0.0.1'|SOCKET_LISTENER_HOST = 'diskover'|g" /config/Constants.php
 fi
 
 if [ ! -f "/app/diskover-web/src/diskover/Constants.php" ]; then
-	ln -s /config/Constants.php /app/diskover-web/src/diskover/Constants.php
+        ln -s /config/Constants.php /app/diskover-web/src/diskover/Constants.php
 fi
 
 if [ ! -f "/app/diskover-web/public/index.php" ]; then
-	cd /app/diskover-web/public && \
-	 ln -s dashboard.php index.php
+        cd /app/diskover-web/public && \
+         ln -s dashboard.php index.php
 fi
 
 if [ ! -f "/config/smartsearches.txt.sample" ]; then
-	cp /app/diskover-web/public/smartsearches.txt.sample /config/smartsearches.txt
+        cp /app/diskover-web/public/smartsearches.txt.sample /config/smartsearches.txt
 fi
 
 if [ ! -f "/app/diskover-web/public/smartsearches.txt" ]; then
-	cp /config/smartsearches.txt /app/diskover-web/public/smartsearches.txt
+        ln -s /config/smartsearches.txt /app/diskover-web/public/smartsearches.txt
 fi
 
 if [ ! -f "/config/customtags.txt.sample" ]; then
-	cp /app/diskover-web/public/customtags.txt.sample /config/customtags.txt.sample
+        cp /app/diskover-web/public/customtags.txt.sample /config/customtags.txt.sample
 fi
 
 if [ ! -f "/app/diskover-web/public/customtags.txt" ]; then
-	cp /config/customtags.txt /app/diskover-web/public/customtags.txt
+        ln -s /config/customtags.txt /app/diskover-web/public/customtags.txt
 fi
 
 if [ ! -f "/config/extrafields.txt.sample" ]; then
-	cp /app/diskover-web/public/extrafields.txt.sample /config/extrafields.txt
+        cp /app/diskover-web/public/extrafields.txt.sample /config/extrafields.txt
 fi
 
 if [ ! -f "/app/diskover-web/public/extrafields.txt" ]; then
-	cp /config/extrafields.txt /app/diskover-web/public/extrafields.txt
+        ln -s /config/extrafields.txt /app/diskover-web/public/extrafields.txt
 fi
 
 # permissions
 chown -R abc:abc \
-	/app/diskover-web \
-	/config
+        /app/diskover-web \
+        /config
