@@ -2,6 +2,16 @@
 
 # need to safely handle exiting the existing worker bots and
 # redis queue when container restarts or stops
+
+. /config/.env
+
+# define array for input values
+declare -A DISKOVER_ARRAY
+DISKOVER_ARRAY[REDIS_HOST]=${REDIS_HOST:-redis}
+DISKOVER_ARRAY[REDIS_PORT]=${REDIS_PORT:-6379}
+
+DISKOVER_ARRAY[DISKOVER_OPTS]="${DISKOVER_ARRAY[DISKOVER_OPTS]} -i ${DISKOVER_ARRAY[INDEX_NAME]}"
+
 _term() {
 	#/bin/bash /app/cleanup.sh
 	# Redis Cleanup
