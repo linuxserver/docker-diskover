@@ -14,9 +14,11 @@ DISKOVER_ARRAY[REDIS_PORT]=${REDIS_PORT:-6379}
 
 DISKOVER_ARRAY[DISKOVER_OPTS]="${DISKOVER_ARRAY[DISKOVER_OPTS]} -i ${DISKOVER_ARRAY[INDEX_NAME]}"
 
+declare -p DISKOVER_ARRAY > /config/.diskover_array
+
 cd /app/diskover || exit
 
-/bin/bash /app/cleanup.sh
+/bin/bash -c ". /config/.diskover_array; /app/cleanup.sh"
 
 echo "starting workers with following options: ${DISKOVER_ARRAY[WORKER_OPTS]}"
 /bin/bash /app/diskover/diskover-bot-launcher.sh ${DISKOVER_ARRAY[WORKER_OPTS]}
