@@ -19,6 +19,7 @@ DISKOVER_ARRAY[DISKOVER_OPTS]="${DISKOVER_ARRAY[DISKOVER_OPTS]} -i ${DISKOVER_AR
 cd /app/diskover || exit
 
 #/bin/bash -c ". /config/.diskover_array; /app/cleanup.sh"
+# Testing moving contents of /app/cleanup.sh here
 # killing existing workers before starting new ones
 echo "killing existing workers..."
 if [ -f "/tmp/diskover_bot_pids" ]; then
