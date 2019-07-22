@@ -57,8 +57,6 @@ fi
 # permissions
 chmod +x \
 	/app/dispatcher.sh
-chmod +x \
-	/app/cleanup.sh
 chown -R abc:abc \
 	/app/diskover \
 	/config
