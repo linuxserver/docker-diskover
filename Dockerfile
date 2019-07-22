@@ -46,8 +46,8 @@ RUN \
  fi && \
  curl -o \
  /tmp/diskover-web.tar.gz -L \
-	#"https://github.com/shirosaidev/diskover-web/archive/${DISKOVER_RELEASE}.tar.gz" && \
-  "https://github.com/shirosaidev/diskover-web/archive/v1.5.0.2.tar.gz" && \
+	"https://github.com/shirosaidev/diskover-web/archive/${DISKOVER_RELEASE}.tar.gz" && \
+  #"https://github.com/shirosaidev/diskover-web/archive/v1.5.0.2.tar.gz" && \
  tar xf \
  /tmp/diskover-web.tar.gz -C \
 	/app/diskover-web/ --strip-components=1 && \
