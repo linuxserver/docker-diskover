@@ -31,8 +31,8 @@ RUN \
  fi && \
  curl -o \
  /tmp/diskover.tar.gz -L \
-	#"https://github.com/shirosaidev/diskover/archive/${DISKOVER_RELEASE}.tar.gz" && \
-  "https://github.com/shirosaidev/diskover/archive/v1.5.0.2.tar.gz" && \
+	"https://github.com/shirosaidev/diskover/archive/${DISKOVER_RELEASE}.tar.gz" && \
+  #"https://github.com/shirosaidev/diskover/archive/v1.5.0.2.tar.gz" && \
  tar xf \
  /tmp/diskover.tar.gz -C \
 	/app/diskover/ --strip-components=1 && \
