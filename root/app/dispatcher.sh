@@ -22,4 +22,4 @@ echo "starting workers with following options: ${DISKOVER_ARRAY[WORKER_OPTS]}"
 /bin/bash /app/diskover/diskover-bot-launcher.sh ${DISKOVER_ARRAY[WORKER_OPTS]}
 
 echo "starting crawler with following options: ${DISKOVER_ARRAY[DISKOVER_OPTS]}"
-/usr/bin/python3 ./diskover.py ${DISKOVER_ARRAY[DISKOVER_OPTS]}
+/usr/bin/python3 /app/diskover/diskover.py ${DISKOVER_ARRAY[DISKOVER_OPTS]}
