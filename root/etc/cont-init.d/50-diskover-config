@@ -61,11 +61,17 @@ chown -R abc:abc \
 	/app/diskover \
 	/config
 
-# run initial retrieval
+# run initial retrieval or just start some worker bots
 if [ ${DISKOVER_CONF[RUN_ON_START]} == true ]; then
 	echo "Initial run of dispatcher in progress"
 	# sleep to allow time for elasticsearch to start
 	sleep 10
 	exec \
 		s6-setuidgid abc /app/dispatcher.sh >> /config/log/diskover/dispatcher.log 2>&1 &
+else
+	echo "Starting worker bots"
+	# sleep to allow time for elasticsearch to start
+	sleep 10
+	exec \
+		s6-setuidgid abc cd /app/diskover && ./diskover-bot-launcher.sh
 fi
