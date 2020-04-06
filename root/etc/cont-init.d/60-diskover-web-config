@@ -31,7 +31,7 @@ if [ ! -f "/app/diskover-web/public/index.php" ]; then
          ln -s dashboard.php index.php
 fi
 
-if [ ! -f "/config/smartsearches.txt.sample" ]; then
+if [ ! -f "/config/smartsearches.txt" ]; then
         cp /app/diskover-web/public/smartsearches.txt.sample /config/smartsearches.txt
 fi
 
@@ -39,8 +39,8 @@ if [ ! -f "/app/diskover-web/public/smartsearches.txt" ]; then
         ln -s /config/smartsearches.txt /app/diskover-web/public/smartsearches.txt
 fi
 
-if [ ! -f "/config/customtags.txt.sample" ]; then
-        cp /app/diskover-web/public/customtags.txt.sample /config/customtags.txt.sample
+if [ ! -f "/config/customtags.txt" ]; then
+        cp /app/diskover-web/public/customtags.txt.sample /config/customtags.txt
 fi
 
 if [ ! -f "/app/diskover-web/public/customtags.txt" ]; then
