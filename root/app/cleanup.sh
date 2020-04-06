@@ -1,4 +1,13 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
+
+. /config/.env
+
+# define array for input values
+declare -A DISKOVER_ARRAY
+DISKOVER_ARRAY[REDIS_HOST]=${REDIS_HOST:-redis}
+DISKOVER_ARRAY[REDIS_PORT]=${REDIS_PORT:-6379}
+
+DISKOVER_ARRAY[DISKOVER_OPTS]="${DISKOVER_ARRAY[DISKOVER_OPTS]} -i ${DISKOVER_ARRAY[INDEX_NAME]}"
 
 . /config/.env
 
