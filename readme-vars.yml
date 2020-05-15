@@ -18,8 +18,8 @@ common_param_env_vars_enabled: true #PGID, PUID, etc
 param_container_name: "{{ project_name }}"
 param_usage_include_vols: true
 param_volumes:
-  - { vol_path: "/config", vol_host_path: "</path/to/{{ project_name }}/config>", desc: "Persistent config files" }
-  - { vol_path: "/data", vol_host_path: "</path/to/{{ project_name }}/data>", desc: "Default mount point to crawl" }
+  - { vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/config", desc: "Persistent config files" }
+  - { vol_path: "/data", vol_host_path: "/path/to/{{ project_name }}/data", desc: "Default mount point to crawl" }
 param_usage_include_ports: true
 param_ports:
   - { external_port: "80", internal_port: "80", port_desc: "diskover Web UI" }
@@ -59,8 +59,8 @@ custom_compose: |
         - RUN_ON_START=true
         - USE_CRON=true
       volumes:
-        - </path/to/diskover/config>:/config
-        - </path/to/diskover/data>:/data
+        - /path/to/diskover/config:/config
+        - /path/to/diskover/data:/data
       ports:
         - 80:80
         - 9181:9181

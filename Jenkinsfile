@@ -17,7 +17,7 @@ pipeline {
     GITLAB_TOKEN=credentials('b6f0f1dd-6952-4cf6-95d1-9c06380283f0')
     GITLAB_NAMESPACE=credentials('gitlab-namespace-id')
     EXT_GIT_BRANCH = 'master'
-    EXT_USER = 'shirosaidev'
+    EXT_USER = 'alex-phillips'
     EXT_REPO = 'diskover'
     BUILD_VERSION_ARG = 'DISKOVER_VERSION'
     LS_USER = 'linuxserver'

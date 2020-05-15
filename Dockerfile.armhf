@@ -28,27 +28,27 @@ RUN \
 	| php -- --install-dir=/usr/bin --filename=composer && \
  echo "**** install diskover ****" && \
  mkdir -p /app/diskover && \
- if [ -z ${DISKOVER_RELEASE+x} ]; then \
-	DISKOVER_RELEASE=$(curl -sX GET "https://api.github.com/repos/shirosaidev/diskover/releases/latest" \
+ if [ -z ${DISKOVER_VERSION+x} ]; then \
+	DISKOVER_VERSION=$(curl -sX GET "https://api.github.com/repos/alex-phillips/diskover/releases/latest" \
 	| awk '/tag_name/{print $4;exit}' FS='[""]'); \
  fi && \
  curl -o \
  /tmp/diskover.tar.gz -L \
-	"https://github.com/shirosaidev/diskover/archive/${DISKOVER_RELEASE}.tar.gz" && \
+	"https://github.com/alex-phillips/diskover/archive/${DISKOVER_VERSION}.tar.gz" && \
  tar xf \
  /tmp/diskover.tar.gz -C \
 	/app/diskover/ --strip-components=1 && \
  echo "**** install diskover-web ****" && \
  mkdir -p /app/diskover-web && \
- DISKOVER_WEB_RELEASE=$(curl -sX GET "https://api.github.com/repos/shirosaidev/diskover-web/releases/latest" \
+ DISKOVER_WEB_VERSION=$(curl -sX GET "https://api.github.com/repos/alex-phillips/diskover-web/releases/latest" \
 	| awk '/tag_name/{print $4;exit}' FS='[""]'); \
- if [ "${DISKOVER_RELEASE}" !=  "${DISKOVER_WEB_RELEASE}" ] || [ -z ${DISKOVER_RELEASE+x} ]; then \
-	DISKOVER_RELEASE=$(curl -sX GET "https://api.github.com/repos/shirosaidev/diskover-web/releases/latest" \
+ if [ "${DISKOVER_VERSION}" !=  "${DISKOVER_WEB_VERSION}" ] || [ -z ${DISKOVER_VERSION+x} ]; then \
+	DISKOVER_VERSION=$(curl -sX GET "https://api.github.com/repos/alex-phillips/diskover-web/releases/latest" \
 	| awk '/tag_name/{print $4;exit}' FS='[""]'); \
  fi && \
  curl -o \
  /tmp/diskover-web.tar.gz -L \
-	"https://github.com/shirosaidev/diskover-web/archive/${DISKOVER_RELEASE}.tar.gz" && \
+	"https://github.com/alex-phillips/diskover-web/archive/${DISKOVER_VERSION}.tar.gz" && \
  tar xf \
  /tmp/diskover-web.tar.gz -C \
 	/app/diskover-web/ --strip-components=1 && \
