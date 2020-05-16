@@ -81,8 +81,8 @@ docker create \
   -p 80:80 \
   -p 9181:9181 \
   -p 9999:9999 \
-  -v </path/to/diskover/config>:/config \
-  -v </path/to/diskover/data>:/data \
+  -v /path/to/diskover/config:/config \
+  -v /path/to/diskover/data:/data \
   --restart unless-stopped \
   linuxserver/diskover
 ```
@@ -111,8 +111,8 @@ services:
       - RUN_ON_START=true
       - USE_CRON=true
     volumes:
-      - </path/to/diskover/config>:/config
-      - </path/to/diskover/data>:/data
+      - /path/to/diskover/config:/config
+      - /path/to/diskover/data:/data
     ports:
       - 80:80
       - 9181:9181

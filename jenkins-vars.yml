@@ -8,7 +8,7 @@ release_tag: latest
 ls_branch: master
 repo_vars:
   - EXT_GIT_BRANCH = 'master'
-  - EXT_USER = 'shirosaidev'
+  - EXT_USER = 'alex-phillips'
   - EXT_REPO = 'diskover'
   - BUILD_VERSION_ARG = 'DISKOVER_VERSION'
   - LS_USER = 'linuxserver'
