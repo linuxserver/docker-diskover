@@ -4,11 +4,11 @@
 project_name: docker-diskover
 external_type: github_stable
 release_type: stable
-release_tag: latest
-ls_branch: master
+release_tag: preview
+ls_branch: preview
 repo_vars:
   - EXT_GIT_BRANCH = 'master'
-  - EXT_USER = 'alex-phillips'
+  - EXT_USER = 'shirosaidev'
   - EXT_REPO = 'diskover'
   - BUILD_VERSION_ARG = 'DISKOVER_VERSION'
   - LS_USER = 'linuxserver'
