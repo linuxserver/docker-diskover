@@ -13,14 +13,14 @@ RUN \
 	curl \
 	gcc \
 	musl-dev \
-	python3-dev \
-	py3-pip && \
+	python3-dev && \
  echo "**** install runtime packages ****" && \
  apk add --no-cache \
 	grep \
 	ncurses \
 	php7-curl \
 	php7-phar \
+	py3-pip \
 	python3 && \
  echo "**** install composer ****" && \
  curl \
