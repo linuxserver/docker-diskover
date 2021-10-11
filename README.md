@@ -39,9 +39,9 @@ Find us at:
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-diskover%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-diskover/job/master/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fdiskover%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/diskover/latest/index.html)
 
-[diskover](https://github.com/shirosaidev/diskover) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems.
+[diskover](https://github.com/diskoverdata/diskover-community) is an open source file system indexer that uses Elasticsearch to index and manage data across heterogeneous storage systems.
 
-[![diskover](https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png)](https://github.com/shirosaidev/diskover)
+[![diskover](https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png)](https://github.com/diskoverdata/diskover-community)
 
 ## Supported Architectures
 
@@ -59,19 +59,14 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-Once running the URL will be `http://<host-ip>/` initial application spinup will take some time so please reload if you get an empty response. We highly reccomend using Docker compose for this image as it includes multiple database backends to link into.
-If you are looking to mount the elasticsearch and redis data to your host machine for access neither of them currently support setting a custom UID or GID they will run by default as:
+This application is dependent on an ElasticSearch instance. Please see the example compose file for additional information.
 
-- Redis - UID=999 GID=999
-- Elasticsearch - UID=1000 GID=1000
+The default username is diskover with the password of **darkdata**, access the container at http://<host-ip>/. The UI may be unusable until a valid index has been created.
 
-ElasticSearch also requires a sysctl setting on the host machine to run properly. Running `sysctl -w vm.max_map_count=262144` will solve this issue. To make this setting persistent through reboots, set this value in `/etc/sysctl.conf`.
+The application doesn't start an index by default. A crontab is created inside of the `/config` directory and can be set up to run automated indexes of `/data`. Changes to this crontab file require a restart to apply. You can also manually run an index by executing `/app/diskover/diskover.py` either in interactive or detached mode:
 
-If you simply want the application to work you can mount these to folders with 0777 permissions, otherwise you will need to create these users host level and set the folder ownership properly.
-
-By default this compose example is pointed to a single directory and the UID and GID you pass to the diskover container needs to match that folders ownership. If these are shared folders with many owners the indexing will likely fail.
-
-For specific questions or help setting up diskover in your environment please refer to the project's Github page [Diskover](https://github.com/shirosaidev/diskover).
+* `docker exec -u abc -d /app/diskover/diskover.py -i diskover-my_index_name /data` Will run an index in the background
+* `docker exec -u abc -it /app/diskover/diskover.py -i diskover-my_index_name /data` Will run an index in the foreground
 
 ## Usage
 
@@ -83,49 +78,45 @@ Here are some example snippets to help you get started creating a container.
 version: '2'
 services:
   diskover:
-    image: linuxserver/diskover
+    image: ghcr.io/linuxserver/diskover
     container_name: diskover
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+      - TZ=America/New_York
       - ES_HOST=elasticsearch
       - ES_PORT=9200
-      - ES_USER=elastic
-      - ES_PASS=changeme
-      - RUN_ON_START=true
-      - USE_CRON=true
     volumes:
       - /path/to/diskover/config:/config
       - /path/to/diskover/data:/data
     ports:
       - 80:80
-      - 9181:9181
-      - 9999:9999
     mem_limit: 4096m
     restart: unless-stopped
     depends_on:
       - elasticsearch
-      - redis
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
-    volumes:
-      - ${DOCKER_HOME}/elasticsearch/data:/usr/share/elasticsearch/data
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
     environment:
+      - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
     ulimits:
       memlock:
         soft: -1
         hard: -1
-  redis:
-    container_name: redis
-    image: redis:alpine
     volumes:
-      - ${HOME}/docker/redis:/data
+      - /path/to/esdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    depends_on:
+      - elasticsearch-helper
+    restart: unless-stopped
+  elasticsearch-helper:
+    image: alpine
+    command: sh -c "sysctl -w vm.max_map_count=262144"
+    privileged: true
 
 ```
 
@@ -136,21 +127,12 @@ docker run -d \
   --name=diskover \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=Europe/London \
-  -e REDIS_HOST=redis \
-  -e REDIS_PORT=6379 \
+  -e TZ=America/New_York \
   -e ES_HOST=elasticsearch \
   -e ES_PORT=9200 \
   -e ES_USER=elastic \
   -e ES_PASS=changeme \
-  -e INDEX_NAME=diskover- \
-  -e DISKOVER_OPTS= \
-  -e WORKER_OPTS= \
-  -e RUN_ON_START=true \
-  -e USE_CRON=true \
   -p 80:80 \
-  -p 9181:9181 \
-  -p 9999:9999 \
   -v /path/to/diskover/config:/config \
   -v /path/to/diskover/data:/data \
   --restart unless-stopped \
@@ -164,22 +146,13 @@ Container images are configured using parameters passed at runtime (such as thos
 | Parameter | Function |
 | :----: | --- |
 | `-p 80` | diskover Web UI |
-| `-p 9181` | rq-dashboard web UI |
-| `-p 9999` | diskover socket server |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
-| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `-e REDIS_HOST=redis` | Redis host (optional) |
-| `-e REDIS_PORT=6379` | Redis port (optional) |
+| `-e TZ=America/New_York` | Specify a timezone to use EG America/New_York |
 | `-e ES_HOST=elasticsearch` | ElasticSearch host (optional) |
 | `-e ES_PORT=9200` | ElasticSearch port (optional) |
 | `-e ES_USER=elastic` | ElasticSearch username (optional) |
 | `-e ES_PASS=changeme` | ElasticSearch password (optional) |
-| `-e INDEX_NAME=diskover-` | Index name prefix (optional) |
-| `-e DISKOVER_OPTS=` | Optional arguments to pass to the diskover crawler (optional) |
-| `-e WORKER_OPTS=` | Optional argumens to pass to the diskover bots launcher (optional) |
-| `-e RUN_ON_START=true` | Initiate a crawl every time the container is started (optional) |
-| `-e USE_CRON=true` | Run a crawl on as a cron job (optional) |
 | `-v /config` | Persistent config files |
 | `-v /data` | Default mount point to crawl |
 
@@ -292,6 +265,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **11.10.21:** - Updated to diskover-community v2.
 * **19.11.20:** - Fix pip packages.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.
