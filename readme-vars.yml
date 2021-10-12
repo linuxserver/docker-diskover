@@ -3,7 +3,7 @@
 # project information
 project_name: diskover
 project_url: "https://github.com/diskoverdata/diskover-community"
-project_logo: "https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png"
+project_logo: "https://raw.githubusercontent.com/diskoverdata/diskover-community/master/diskover-web/public/images/diskover.png"
 project_blurb: "[{{ project_name }}]({{ project_url }}) is an open source file system indexer that uses Elasticsearch to index and manage data across heterogeneous storage systems."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 

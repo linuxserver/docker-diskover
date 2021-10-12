@@ -41,7 +41,7 @@ Find us at:
 
 [diskover](https://github.com/diskoverdata/diskover-community) is an open source file system indexer that uses Elasticsearch to index and manage data across heterogeneous storage systems.
 
-[![diskover](https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png)](https://github.com/diskoverdata/diskover-community)
+[![diskover](https://raw.githubusercontent.com/diskoverdata/diskover-community/master/diskover-web/public/images/diskover.png)](https://github.com/diskoverdata/diskover-community)
 
 ## Supported Architectures
 
