@@ -12,7 +12,7 @@ if [ -f /config/diskover.cfg ]; then
 *                                                    *
 *    If you would like to upgrade, please create a   *
 *                                                    *
-*  /config directory. If you would like to continue  *
+*   new /config directory. If you want to continue   *
 *                                                    *
 *  using version 1, specify the tag v1.5.0.13-ls33.  *
 *                                                    *
