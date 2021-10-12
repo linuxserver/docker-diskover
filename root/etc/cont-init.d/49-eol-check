@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-if [ -f /config/diskover.cfg ]; then
+if [ -f "/config/diskover.cfg" ]; then
     echo '
 ******************************************************
 ******************************************************

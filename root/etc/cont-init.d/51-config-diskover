@@ -1,19 +1,8 @@
 #!/usr/bin/with-contenv bash
 
-declare -A DISKOVER_CONF
-DISKOVER_CONF[ES_HOST]=${ES_HOST:-elasticsearch}
-DISKOVER_CONF[ES_PORT]=${ES_PORT:-9200}
-DISKOVER_CONF[ES_USER]=${ES_USER:-}
-DISKOVER_CONF[ES_PASS]=${ES_PASS:-}
-
 # copy config
 if [[ ! -e /config/diskover.conf.d ]]; then
 	cp -r /app/diskover/configs_sample /config/diskover.conf.d
-
-    sed -i "s|host:|host: ${WEB_CONF[ES_HOST]}|g" /config/diskover.conf.d/diskover/config.yaml
-    sed -i "s|port:|port: ${WEB_CONF[ES_PORT]}|g" /config/diskover.conf.d/diskover/config.yaml
-    sed -i "s|user:|user: ${WEB_CONF[ES_USER]}|g" /config/diskover.conf.d/diskover/config.yaml
-    sed -i "s|password:|password: ${WEB_CONF[ES_PASS]}|g" /config/diskover.conf.d/diskover/config.yaml
 fi
 
 ls /config/diskover.conf.d | \
@@ -21,7 +10,7 @@ ls /config/diskover.conf.d | \
     ln -sf /config/diskover.conf.d/{} /etc/{}
 
 # install crontab
-[[ ! -e /config/crontab ]] && \
+[[ ! -e "/config/crontab" ]] && \
     cp /defaults/crontabs/abc /config/crontab
 
 crontab -u abc /config/crontab

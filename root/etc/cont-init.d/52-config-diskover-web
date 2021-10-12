@@ -1,12 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-# set default values for variables
-declare -A WEB_CONF
-WEB_CONF[ES_HOST]=${ES_HOST:-elasticsearch}
-WEB_CONF[ES_PORT]=${ES_PORT:-9200}
-WEB_CONF[ES_USER]=${ES_USER:-}
-WEB_CONF[ES_PASS]=${ES_PASS:-}
-
 mkdir -p \
     /config/diskover-web.conf.d
 
@@ -24,12 +17,6 @@ done
 # copy and set variables in Constants.php
 if [[ ! -e "/config/diskover-web.conf.d/Constants.php" ]]; then
     cp /app/diskover-web/src/diskover/Constants.php.sample /config/diskover-web.conf.d/Constants.php
-
-    sed -i "s|const TIMEZONE = 'America/Vancouver';|const TIMEZONE = '${TZ}';|g" /config/diskover-web.conf.d/Constants.php
-    sed -i "s|const ES_HOST = 'localhost';|const ES_HOST = '${WEB_CONF[ES_HOST]}';|g" /config/diskover-web.conf.d/Constants.php
-    sed -i "s|const ES_PORT = 9200;|const ES_PORT = ${WEB_CONF[ES_PORT]};|g" /config/diskover-web.conf.d/Constants.php
-    sed -i "s|const ES_USER = '';|const ES_USER = '${WEB_CONF[ES_USER]}';|g" /config/diskover-web.conf.d/Constants.php
-    sed -i "s|const ES_PASS = '';|const ES_PASS = '${WEB_CONF[ES_PASS]}';|g" /config/diskover-web.conf.d/Constants.php
 fi
 
 ln -sf /config/diskover-web.conf.d/Constants.php /app/diskover-web/src/diskover/Constants.php

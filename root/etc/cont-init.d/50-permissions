@@ -1,12 +1,12 @@
 #!/usr/bin/with-contenv bash
 
-if [ -d /app/diskover-tmp ]; then
+if [ -d "/app/diskover-tmp" ]; then
     echo "New container detected. Setting up app folder and fixing permissions."
     mv /app/diskover-tmp /app/diskover
 fi
 
 
-if [ -d /app/diskover-web-tmp ]; then
+if [ -d "/app/diskover-web-tmp" ]; then
     mv /app/diskover-web-tmp /app/diskover-web
 fi
 
