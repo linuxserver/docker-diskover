@@ -43,6 +43,7 @@ RUN \
     /app/ --strip-components=1 && \
   cd /app/diskover && \
   pip3 install --no-cache-dir -r requirements.txt && \
+  sed -i 's@;clear_env = no@clear_env = no@' "/etc/php7/php-fpm.d/www.conf" && \
   echo "**** overlay-fs workaround ****" && \
   mv /app/diskover /app/diskover-tmp && \
   mv /app/diskover-web /app/diskover-web-tmp && \
