@@ -4,21 +4,21 @@ mkdir -p \
     /config/diskover-web.conf.d
 
 # copy over sample config files
-cd /app/diskover-web/public
+cd /app/www/public
 for file in *.sample; do
     dest=${file%.sample}
 
     [[ ! -e "/config/diskover-web.conf.d/$dest" ]] && \
-        cp /app/diskover-web/public/$file /config/diskover-web.conf.d/$dest
+        cp /app/www/public/$file /config/diskover-web.conf.d/$dest
 
-    ln -sf /config/diskover-web.conf.d/$dest /app/diskover-web/public/$dest
+    ln -sf /config/diskover-web.conf.d/$dest /app/www/public/$dest
 done
 
 # copy and set variables in Constants.php
 if [[ ! -e "/config/diskover-web.conf.d/Constants.php" ]]; then
-    cp /app/diskover-web/src/diskover/Constants.php.sample /config/diskover-web.conf.d/Constants.php
+    cp /app/www/src/diskover/Constants.php.sample /config/diskover-web.conf.d/Constants.php
 fi
 
-ln -sf /config/diskover-web.conf.d/Constants.php /app/diskover-web/src/diskover/Constants.php
+ln -sf /config/diskover-web.conf.d/Constants.php /app/www/src/diskover/Constants.php
 
 chown -R abc:abc /config
