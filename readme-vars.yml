@@ -2,9 +2,9 @@
 
 # project information
 project_name: diskover
-project_url: "https://github.com/shirosaidev/diskover"
-project_logo: "https://raw.githubusercontent.com/shirosaidev/diskover/master/docs/diskover.png"
-project_blurb: "[{{ project_name }}]({{ project_url }}) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems."
+project_url: "https://github.com/diskoverdata/diskover-community"
+project_logo: "https://raw.githubusercontent.com/diskoverdata/diskover-community/master/diskover-web/public/images/diskover.png"
+project_blurb: "[{{ project_name }}]({{ project_url }}) is an open source file system indexer that uses Elasticsearch to index and manage data across heterogeneous storage systems."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 
 # supported architectures
@@ -23,90 +23,73 @@ param_volumes:
 param_usage_include_ports: true
 param_ports:
   - { external_port: "80", internal_port: "80", port_desc: "diskover Web UI" }
-  - { external_port: "9181", internal_port: "9181", port_desc: "rq-dashboard web UI" }
-  - { external_port: "9999", internal_port: "9999", port_desc: "diskover socket server" }
 param_usage_include_env: true
 param_env_vars:
-  - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London"}
-  - { env_var: "REDIS_HOST", env_value: "redis", desc: "Redis host (optional)"}
-  - { env_var: "REDIS_PORT", env_value: "6379", desc: "Redis port (optional)"}
+  - { env_var: "TZ", env_value: "America/New_York", desc: "Specify a timezone to use EG America/New_York"}
   - { env_var: "ES_HOST", env_value: "elasticsearch", desc: "ElasticSearch host (optional)"}
   - { env_var: "ES_PORT", env_value: "9200", desc: "ElasticSearch port (optional)"}
   - { env_var: "ES_USER", env_value: "elastic", desc: "ElasticSearch username (optional)"}
   - { env_var: "ES_PASS", env_value: "changeme", desc: "ElasticSearch password (optional)"}
-  - { env_var: "INDEX_NAME", env_value: "diskover-", desc: "Index name prefix (optional)"}
-  - { env_var: "DISKOVER_OPTS", env_value: "", desc: "Optional arguments to pass to the diskover crawler (optional)"}
-  - { env_var: "WORKER_OPTS", env_value: "", desc: "Optional argumens to pass to the diskover bots launcher (optional)"}
-  - { env_var: "RUN_ON_START", env_value: "true", desc: "Initiate a crawl every time the container is started (optional)"}
-  - { env_var: "USE_CRON", env_value: "true", desc: "Run a crawl on as a cron job (optional)"}
 
 custom_compose: |
   version: '2'
   services:
     diskover:
-      image: linuxserver/diskover
+      image: ghcr.io/linuxserver/diskover
       container_name: diskover
       environment:
         - PUID=1000
         - PGID=1000
-        - TZ=Europe/London
-        - REDIS_HOST=redis
-        - REDIS_PORT=6379
+        - TZ=America/New_York
         - ES_HOST=elasticsearch
         - ES_PORT=9200
-        - ES_USER=elastic
-        - ES_PASS=changeme
-        - RUN_ON_START=true
-        - USE_CRON=true
       volumes:
         - /path/to/diskover/config:/config
         - /path/to/diskover/data:/data
       ports:
         - 80:80
-        - 9181:9181
-        - 9999:9999
       mem_limit: 4096m
       restart: unless-stopped
       depends_on:
         - elasticsearch
-        - redis
     elasticsearch:
       container_name: elasticsearch
-      image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
-      volumes:
-        - ${DOCKER_HOME}/elasticsearch/data:/usr/share/elasticsearch/data
+      image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
       environment:
+        - discovery.type=single-node
         - bootstrap.memory_lock=true
-        - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+        - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
       ulimits:
         memlock:
           soft: -1
           hard: -1
-    redis:
-      container_name: redis
-      image: redis:alpine
       volumes:
-        - ${HOME}/docker/redis:/data
+        - /path/to/esdata:/usr/share/elasticsearch/data
+      ports:
+        - 9200:9200
+      depends_on:
+        - elasticsearch-helper
+      restart: unless-stopped
+    elasticsearch-helper:
+      image: alpine
+      command: sh -c "sysctl -w vm.max_map_count=262144"
+      privileged: true
 
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
-  Once running the URL will be `http://<host-ip>/` initial application spinup will take some time so please reload if you get an empty response. We highly reccomend using Docker compose for this image as it includes multiple database backends to link into.
-  If you are looking to mount the elasticsearch and redis data to your host machine for access neither of them currently support setting a custom UID or GID they will run by default as:
+  This application is dependent on an ElasticSearch instance. Please see the example compose file for additional information.
 
-  - Redis - UID=999 GID=999
-  - Elasticsearch - UID=1000 GID=1000
+  The default username is diskover with the password of **darkdata**, access the container at http://<host-ip>/. The UI may be unusable until a valid index has been created.
 
-  ElasticSearch also requires a sysctl setting on the host machine to run properly. Running `sysctl -w vm.max_map_count=262144` will solve this issue. To make this setting persistent through reboots, set this value in `/etc/sysctl.conf`.
+  The application doesn't start an index by default. A crontab is created inside of the `/config` directory and can be set up to run automated indexes of `/data`. Changes to this crontab file require a restart to apply. You can also manually run an index by executing `/app/diskover/diskover.py` either in interactive or detached mode:
 
-  If you simply want the application to work you can mount these to folders with 0777 permissions, otherwise you will need to create these users host level and set the folder ownership properly.
-
-  By default this compose example is pointed to a single directory and the UID and GID you pass to the diskover container needs to match that folders ownership. If these are shared folders with many owners the indexing will likely fail.
-
-  For specific questions or help setting up diskover in your environment please refer to the project's Github page [{{ project_name|capitalize }}]({{ project_url }}).
+  * `docker exec -u abc -d /app/diskover/diskover.py -i diskover-my_index_name /data` Will run an index in the background
+  * `docker exec -u abc -it /app/diskover/diskover.py -i diskover-my_index_name /data` Will run an index in the foreground
 
 # changelog
 changelogs:
+  - { date: "11.10.21:", desc: "Updated to diskover-community v2." }
   - { date: "19.11.20:", desc: "Fix pip packages." }
   - { date: "19.12.19:", desc: "Rebasing to alpine 3.11." }
   - { date: "28.06.19:", desc: "Rebasing to alpine 3.10." }

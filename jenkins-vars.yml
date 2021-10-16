@@ -8,8 +8,8 @@ release_tag: latest
 ls_branch: master
 repo_vars:
   - EXT_GIT_BRANCH = 'master'
-  - EXT_USER = 'alex-phillips'
-  - EXT_REPO = 'diskover'
+  - EXT_USER = 'diskoverdata'
+  - EXT_REPO = 'diskover-community'
   - BUILD_VERSION_ARG = 'DISKOVER_VERSION'
   - LS_USER = 'linuxserver'
   - LS_REPO = 'docker-diskover'

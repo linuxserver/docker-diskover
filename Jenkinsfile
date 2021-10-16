@@ -18,8 +18,8 @@ pipeline {
     GITLAB_NAMESPACE=credentials('gitlab-namespace-id')
     SCARF_TOKEN=credentials('scarf_api_key')
     EXT_GIT_BRANCH = 'master'
-    EXT_USER = 'alex-phillips'
-    EXT_REPO = 'diskover'
+    EXT_USER = 'diskoverdata'
+    EXT_REPO = 'diskover-community'
     BUILD_VERSION_ARG = 'DISKOVER_VERSION'
     LS_USER = 'linuxserver'
     LS_REPO = 'docker-diskover'
@@ -467,7 +467,7 @@ pipeline {
           --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
           --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
           --label \"org.opencontainers.image.title=Diskover\" \
-          --label \"org.opencontainers.image.description=[diskover](https://github.com/shirosaidev/diskover) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems.\" \
+          --label \"org.opencontainers.image.description=[diskover](https://github.com/diskoverdata/diskover-community) is an open source file system indexer that uses Elasticsearch to index and manage data across heterogeneous storage systems.\" \
           --no-cache --pull -t ${IMAGE}:${META_TAG} \
           --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
       }
@@ -497,7 +497,7 @@ pipeline {
               --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
               --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
               --label \"org.opencontainers.image.title=Diskover\" \
-              --label \"org.opencontainers.image.description=[diskover](https://github.com/shirosaidev/diskover) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems.\" \
+              --label \"org.opencontainers.image.description=[diskover](https://github.com/diskoverdata/diskover-community) is an open source file system indexer that uses Elasticsearch to index and manage data across heterogeneous storage systems.\" \
               --no-cache --pull -t ${IMAGE}:amd64-${META_TAG} \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
           }
@@ -524,7 +524,7 @@ pipeline {
               --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
               --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
               --label \"org.opencontainers.image.title=Diskover\" \
-              --label \"org.opencontainers.image.description=[diskover](https://github.com/shirosaidev/diskover) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems.\" \
+              --label \"org.opencontainers.image.description=[diskover](https://github.com/diskoverdata/diskover-community) is an open source file system indexer that uses Elasticsearch to index and manage data across heterogeneous storage systems.\" \
               --no-cache --pull -f Dockerfile.armhf -t ${IMAGE}:arm32v7-${META_TAG} \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
             sh "docker tag ${IMAGE}:arm32v7-${META_TAG} ghcr.io/linuxserver/lsiodev-buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER}"
@@ -558,7 +558,7 @@ pipeline {
               --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
               --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
               --label \"org.opencontainers.image.title=Diskover\" \
-              --label \"org.opencontainers.image.description=[diskover](https://github.com/shirosaidev/diskover) is a file system crawler and disk space usage software that uses Elasticsearch to index and manage data across heterogeneous storage systems.\" \
+              --label \"org.opencontainers.image.description=[diskover](https://github.com/diskoverdata/diskover-community) is an open source file system indexer that uses Elasticsearch to index and manage data across heterogeneous storage systems.\" \
               --no-cache --pull -f Dockerfile.aarch64 -t ${IMAGE}:arm64v8-${META_TAG} \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
             sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ghcr.io/linuxserver/lsiodev-buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER}"
