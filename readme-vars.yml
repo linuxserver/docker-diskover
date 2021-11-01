@@ -94,6 +94,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "31.10.21:", desc: "Added xpack.security variable to ElasticSearch; added instructions to edit Constants.php in diskover; corrected command needed to manually generate an index in diskover" }
   - { date: "11.10.21:", desc: "Updated to diskover-community v2." }
   - { date: "19.11.20:", desc: "Fix pip packages." }
   - { date: "19.12.19:", desc: "Rebasing to alpine 3.11." }
