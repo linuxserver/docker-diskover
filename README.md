@@ -82,7 +82,7 @@ Here are some example snippets to help you get started creating a container.
 version: '2'
 services:
   diskover:
-    image: ghcr.io/linuxserver/diskover
+    image: lscr.io/linuxserver/diskover
     container_name: diskover
     environment:
       - PUID=1000
