@@ -26,6 +26,7 @@ RUN \
     ncurses \
     php7-curl \
     php7-ldap \
+    php7-sqlite3 \
     py3-requests \
     py3-urllib3 \
     py3-xxhash \
