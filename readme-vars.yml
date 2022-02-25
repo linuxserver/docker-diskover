@@ -94,6 +94,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "25.02.22:", desc: "Add php7-sqlite3 to support rc4 release." }
   - { date: "03.11.21:", desc: "Added more support for potential config files." }
   - { date: "31.10.21:", desc: "Added xpack.security variable to ElasticSearch; added instructions to edit Constants.php in diskover; corrected command needed to manually generate an index in diskover" }
   - { date: "11.10.21:", desc: "Updated to diskover-community v2." }
