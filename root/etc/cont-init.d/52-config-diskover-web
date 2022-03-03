@@ -24,6 +24,11 @@ for file in *.sample; do
     ln -sf /config/diskover-web.conf.d/$dest /app/www/public/tasks/$dest
 done
 
+if [[ ! -e "/config/diskoverdb.sqlite3" ]]; then
+    touch /config/diskoverdb.sqlite3
+fi
+ln -sf /config/diskoverdb.sqlite3 /app/www/diskoverdb.sqlite3
+
 # copy and set variables in Constants.php
 if [[ ! -e "/config/diskover-web.conf.d/Constants.php" ]]; then
     cp /app/www/src/diskover/Constants.php.sample /config/diskover-web.conf.d/Constants.php
