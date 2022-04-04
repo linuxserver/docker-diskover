@@ -29,7 +29,7 @@ libmagic-5.40-r1
 libproc-3.3.17-r0
 libressl3.3-libcrypto-3.3.6-r0
 libressl3.3-libssl-3.3.6-r0
-libretls-3.3.3p1-r2
+libretls-3.3.3p1-r3
 libsasl-2.1.28-r0
 libssl1.1-1.1.1n-r0
 libstdc++-10.3.1_git20210424-r2
@@ -85,4 +85,4 @@ utmps-0.1.0.2-r0
 xxhash-0.8.0-r1
 xz-5.2.5-r0
 xz-libs-5.2.5-r0
-zlib-1.2.11-r3
+zlib-1.2.12-r0
