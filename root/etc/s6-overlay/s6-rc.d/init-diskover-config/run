@@ -6,8 +6,6 @@ if [[ ! -e /config/diskover.conf.d ]]; then
     cp -r /app/diskover/configs_sample /config/diskover.conf.d
 fi
 
-find /config/diskover.conf.d -maxdepth 1 -type f -exec ln -sf {} /etc/ \;
-
 # setup web
 mkdir -p \
     /config/diskover-web.conf.d

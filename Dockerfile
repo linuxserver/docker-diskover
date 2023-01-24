@@ -9,6 +9,9 @@ ARG DISKOVER_RELEASE
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="alex-phillips"
 
+# environment settings
+ENV DISKOVERDIR=/config/diskover.conf.d/diskover/
+
 RUN \
   echo "**** install build packages ****" && \
   apk add --no-cache --virtual=build-dependencies \
@@ -51,9 +54,7 @@ RUN \
     pip \
     wheel && \
   pip3 install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.17/ -r requirements.txt && \
-  echo "**** overlay-fs workaround ****" && \
-  mv /app/diskover /app/diskover-tmp && \
-  mv /app/diskover-web /app/diskover-web-tmp && \
+  chown -R abc:abc /app && \
   echo "**** cleanup ****" && \
   apk del --purge \
     build-dependencies && \
