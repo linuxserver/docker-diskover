@@ -1,4 +1,4 @@
-## Version 2023/01/12 - Changelog: https://github.com/linuxserver/docker-diskover/commits/master/root/defaults/nginx/site-confs/default.conf.sample
+## Version 2023/01/23 - Changelog: https://github.com/linuxserver/docker-diskover/commits/master/root/defaults/nginx/site-confs/default.conf.sample
 
 server {
     listen 80 default_server;
@@ -9,7 +9,7 @@ server {
 
     server_name _;
 
-    root /app/www/public;
+    root /app/diskover-web/public;
     index index.html index.htm index.php;
 
     location / {

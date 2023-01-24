@@ -11,25 +11,25 @@ mkdir -p \
     /config/diskover-web.conf.d
 
 # copy over sample config files
-if [[ -d /app/www/public ]]; then
-    cd /app/www/public || exit 1
+if [[ -d /app/diskover-web/public ]]; then
+    cd /app/diskover-web/public || exit 1
     for file in *.sample; do
         dest=${file%.sample}
         if [[ ! -e "/config/diskover-web.conf.d/$dest" ]]; then
-            cp "/app/www/public/$file" "/config/diskover-web.conf.d/$dest"
+            cp "/app/diskover-web/public/$file" "/config/diskover-web.conf.d/$dest"
         fi
-        ln -sf "/config/diskover-web.conf.d/$dest" "/app/www/public/$dest"
+        ln -sf "/config/diskover-web.conf.d/$dest" "/app/diskover-web/public/$dest"
     done
 fi
 
-if [[ -d /app/www/public/tasks ]]; then
-    cd /app/www/public/tasks || exit 1
+if [[ -d /app/diskover-web/public/tasks ]]; then
+    cd /app/diskover-web/public/tasks || exit 1
     for file in *.sample; do
         dest=${file%.sample}
         if [[ ! -e "/config/diskover-web.conf.d/$dest" ]]; then
-            cp "/app/www/public/tasks/$file" "/config/diskover-web.conf.d/$dest"
+            cp "/app/diskover-web/public/tasks/$file" "/config/diskover-web.conf.d/$dest"
         fi
-        ln -sf "/config/diskover-web.conf.d/$dest" "/app/www/public/tasks/$dest"
+        ln -sf "/config/diskover-web.conf.d/$dest" "/app/diskover-web/public/tasks/$dest"
     done
 fi
 
@@ -37,13 +37,13 @@ fi
 if [[ ! -e "/config/diskoverdb.sqlite3" ]]; then
     touch /config/diskoverdb.sqlite3
 fi
-ln -sf /config/diskoverdb.sqlite3 /app/www/diskoverdb.sqlite3
+ln -sf /config/diskoverdb.sqlite3 /app/diskover-web/diskoverdb.sqlite3
 
 # copy and set variables in Constants.php
 if [[ ! -e "/config/diskover-web.conf.d/Constants.php" ]]; then
-    cp /app/www/src/diskover/Constants.php.sample /config/diskover-web.conf.d/Constants.php
+    cp /app/diskover-web/src/diskover/Constants.php.sample /config/diskover-web.conf.d/Constants.php
 fi
 
-ln -sf /config/diskover-web.conf.d/Constants.php /app/www/src/diskover/Constants.php
+ln -sf /config/diskover-web.conf.d/Constants.php /app/diskover-web/src/diskover/Constants.php
 
 lsiown -R abc:abc /config
