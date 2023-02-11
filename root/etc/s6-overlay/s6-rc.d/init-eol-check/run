@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bash
+# shellcheck shell=bash
 
 if [ -f "/config/diskover.cfg" ]; then
     echo '
@@ -23,8 +24,7 @@ if [ -f "/config/diskover.cfg" ]; then
 *                                                    *
 ******************************************************
 ******************************************************'
-    while true
-    do
+    while true; do
         sleep 3600
     done
 fi
