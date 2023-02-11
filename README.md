@@ -56,7 +56,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ✅ | arm32v7-\<version tag\> |
 
 ## Application Setup
 
@@ -133,7 +133,7 @@ docker run -d \
   --name=diskover \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e TZ=America/New_York \
+  -e TZ=Etc/UTC \
   -e ES_HOST=elasticsearch \
   -e ES_PORT=9200 \
   -e ES_USER=elastic \
@@ -143,6 +143,7 @@ docker run -d \
   -v /path/to/diskover/data:/data \
   --restart unless-stopped \
   lscr.io/linuxserver/diskover:latest
+
 ```
 
 ## Parameters
@@ -154,7 +155,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-p 80` | diskover Web UI |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
-| `-e TZ=America/New_York` | Specify a timezone to use EG America/New_York |
+| `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-e ES_HOST=elasticsearch` | ElasticSearch host (optional) |
 | `-e ES_PORT=9200` | ElasticSearch port (optional) |
 | `-e ES_USER=elastic` | ElasticSearch username (optional) |
