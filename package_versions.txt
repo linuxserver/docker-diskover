@@ -4,7 +4,7 @@ alpine-baselayout            3.4.0-r0               apk
 alpine-baselayout-data       3.4.0-r0               apk           
 alpine-keys                  2.4-r1                 apk           
 alpine-release               3.17.2-r0              apk           
-apache2-utils                2.4.55-r0              apk           
+apache2-utils                2.4.56-r0              apk           
 apk-tools                    2.12.10-r1             apk           
 apr                          1.7.2-r0               apk           
 apr-util                     1.6.3-r0               apk           
@@ -26,7 +26,7 @@ elasticsearch/elasticsearch  v7.13.1                php-composer
 ezimuel/guzzlestreams        3.0.1                  php-composer  
 ezimuel/ringphp              1.1.2                  php-composer  
 gdbm                         1.23-r0                apk           
-git                          2.38.4-r0              apk           
+git                          2.38.4-r1              apk           
 idna                         3.4                    python        
 jq                           1.6-r2                 apk           
 libacl                       2.3.1-r1               apk           
