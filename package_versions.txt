@@ -69,15 +69,15 @@ php-cli                      8.1.16                 binary
 php-fpm                      8.1.16                 binary        
 php81                        8.1.16-r0              apk           
 php81-common                 8.1.16-r0              apk           
-php81-curl                   8.1.16-r0              apk           
+php81-curl                   8.1.17-r0              apk           
 php81-fileinfo               8.1.16-r0              apk           
 php81-fpm                    8.1.16-r0              apk           
-php81-ldap                   8.1.16-r0              apk           
+php81-ldap                   8.1.17-r0              apk           
 php81-mbstring               8.1.16-r0              apk           
 php81-openssl                8.1.16-r0              apk           
 php81-session                8.1.16-r0              apk           
 php81-simplexml              8.1.16-r0              apk           
-php81-sqlite3                8.1.16-r0              apk           
+php81-sqlite3                8.1.17-r0              apk           
 php81-xml                    8.1.16-r0              apk           
 php81-xmlwriter              8.1.16-r0              apk           
 pip                          23.0.1                 python        
@@ -104,7 +104,7 @@ ssl_client                   1.35.0-r29             apk
 tzdata                       2022f-r1               apk           
 urllib3                      1.26.12                python        
 utmps-libs                   0.1.2.0-r1             apk           
-wheel                        0.38.4                 python        
+wheel                        0.40.0                 python        
 xxhash                       0.8.1-r0               apk           
 xxhash                       1.4.4                  python        
 xz                           5.2.9-r0               apk           
