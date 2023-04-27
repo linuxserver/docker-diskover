@@ -62,7 +62,7 @@ netcat-openbsd               1.130-r4               apk
 nghttp2-libs                 1.51.0-r0              apk           
 nginx                        1.22.1-r0              apk           
 oniguruma                    6.9.8-r0               apk           
-openssl                      3.0.8-r3               apk           
+openssl                      3.0.8-r4               apk           
 pcre                         8.45-r2                apk           
 pcre2                        10.42-r0               apk           
 php-cli                      8.1.18                 binary        
@@ -80,7 +80,7 @@ php81-simplexml              8.1.18-r0              apk
 php81-sqlite3                8.1.18-r0              apk           
 php81-xml                    8.1.18-r0              apk           
 php81-xmlwriter              8.1.18-r0              apk           
-pip                          23.1                   python        
+pip                          23.1.2                 python        
 popt                         1.19-r0                apk           
 procps                       3.3.17-r2              apk           
 psr/log                      1.1.4                  php-composer  
