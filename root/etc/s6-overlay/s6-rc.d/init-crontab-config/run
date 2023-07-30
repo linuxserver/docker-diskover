@@ -15,7 +15,7 @@ if [[ ! -f /config/crontabs/abc ]]; then
 
     # if crontabs still do not exist in config (were not copied from system)
     # copy crontab from included defaults (using -n, do not overwrite an existing file)
-    cp -n /etc/crontabs/abc /config/crontabs/
+    cp -n /defaults/crontabs/abc /config/crontabs/
 fi
 
 # set permissions and import user crontabs

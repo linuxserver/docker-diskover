@@ -1,0 +1,2 @@
+# min   hour    day     month   weekday command
+#0       3       *       *       *       python3 /app/diskover/diskover.py -i diskover-my_index_name /data 2>&1
