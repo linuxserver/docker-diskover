@@ -13,8 +13,8 @@ argon2-libs                  20190702-r4             apk
 bash                         5.2.15-r5               apk           
 brotli-libs                  1.0.9-r14               apk           
 busybox                      1.36.1                  binary        
-busybox                      1.36.1-r1               apk           
-busybox-binsh                1.36.1-r1               apk           
+busybox                      1.36.1-r2               apk           
+busybox-binsh                1.36.1-r2               apk           
 ca-certificates              20230506-r0             apk           
 ca-certificates-bundle       20230506-r0             apk           
 certifi                      2023.5.7                python        
@@ -23,7 +23,7 @@ charset-normalizer           2.0.12                  python
 charset-normalizer           3.1.0                   python        
 confuse                      1.6.0                   python        
 coreutils                    9.3-r1                  apk           
-curl                         8.2.0-r1                apk           
+curl                         8.2.1-r0                apk           
 elasticsearch                7.13.4                  python        
 elasticsearch/elasticsearch  v7.13.1                 php-composer  
 ezimuel/guzzlestreams        3.0.1                   php-composer  
@@ -38,7 +38,7 @@ libbsd                       0.11.7-r1               apk
 libbz2                       1.0.8-r5                apk           
 libc-utils                   0.7.2-r5                apk           
 libcrypto3                   3.1.1-r3                apk           
-libcurl                      8.2.0-r1                apk           
+libcurl                      8.2.1-r0                apk           
 libedit                      20221030.3.1-r1         apk           
 libexpat                     2.5.0-r1                apk           
 libffi                       3.4.4-r2                apk           
@@ -62,7 +62,7 @@ linux-pam                    1.5.2-r10               apk
 logrotate                    3.21.0-r1               apk           
 mpdecimal                    2.5.1-r2                apk           
 musl                         1.2.4-r1                apk           
-musl-utils                   1.2.4-r0                apk           
+musl-utils                   1.2.4-r1                apk           
 nano                         7.2-r1                  apk           
 ncurses                      6.4_p20230506-r0        apk           
 ncurses-terminfo-base        6.4_p20230506-r0        apk           
@@ -122,12 +122,12 @@ setuptools                   65.5.0                  python
 shadow                       4.13-r4                 apk           
 skalibs                      2.13.1.1-r1             apk           
 sqlite-libs                  3.41.2-r2               apk           
-ssl_client                   1.36.1-r1               apk           
+ssl_client                   1.36.1-r2               apk           
 tzdata                       2023c-r1                apk           
 urllib3                      1.26.15                 python        
 urllib3                      1.26.16                 python        
 utmps-libs                   0.1.2.1-r1              apk           
-wheel                        0.41.0                  python        
+wheel                        0.41.1                  python        
 xxhash                       3.2.0                   python        
 xz-libs                      5.4.3-r0                apk           
 zlib                         1.2.13-r1               apk           
