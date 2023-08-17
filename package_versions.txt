@@ -73,7 +73,7 @@ oniguruma                    6.9.8-r1                apk
 openssl                      3.1.2-r0                apk           
 pcre                         8.45-r3                 apk           
 pcre2                        10.42-r1                apk           
-php-cli                      8.2.8                   binary        
+php-fpm                      8.2.8                   binary        
 php82                        8.2.8-r0                apk           
 php82-common                 8.2.8-r0                apk           
 php82-ctype                  8.2.8-r0                apk           
