@@ -26,6 +26,9 @@ server {
         fastcgi_split_path_info ^(.+\.php)(.*)$;
         fastcgi_pass 127.0.0.1:9000;
         fastcgi_index index.php;
+        fastcgi_read_timeout 900;
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
         include /etc/nginx/fastcgi_params;
     }
 
