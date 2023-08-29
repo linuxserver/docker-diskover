@@ -1,4 +1,4 @@
-## Version 2023/04/13 - Changelog: https://github.com/linuxserver/docker-diskover/commits/master/root/defaults/nginx/site-confs/default.conf.sample
+## Version 2023/08/29 - Changelog: https://github.com/linuxserver/docker-diskover/commits/master/root/defaults/nginx/site-confs/default.conf.sample
 
 server {
     listen 80 default_server;
