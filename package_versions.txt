@@ -30,6 +30,7 @@ ezimuel/ringphp              1.1.2                   php-composer
 gdbm                         1.23-r1                 apk           
 git                          2.40.1-r0               apk           
 idna                         3.4                     python        
+idna                         3.6                     python        
 jq                           1.6-r3                  apk           
 libacl                       2.3.1-r3                apk           
 libattr                      2.5.1-r4                apk           
@@ -54,7 +55,7 @@ libssl3                      3.1.4-r1                apk
 libstdc++                    12.2.1_git20220924-r10  apk           
 libunistring                 1.1-r1                  apk           
 libuuid                      2.38.1-r8               apk           
-libxml2                      2.11.4-r0               apk           
+libxml2                      2.11.6-r0               apk           
 libxxhash                    0.8.2-r0                apk           
 libzip                       1.9.2-r2                apk           
 linux-pam                    1.5.2-r10               apk           
@@ -79,13 +80,13 @@ php82-curl                   8.2.12-r0               apk
 php82-fileinfo               8.2.12-r0               apk           
 php82-fpm                    8.2.12-r0               apk           
 php82-iconv                  8.2.12-r0               apk           
-php82-ldap                   8.2.12-r0               apk           
+php82-ldap                   8.2.13-r0               apk           
 php82-mbstring               8.2.12-r0               apk           
 php82-openssl                8.2.12-r0               apk           
 php82-phar                   8.2.12-r0               apk           
 php82-session                8.2.12-r0               apk           
 php82-simplexml              8.2.12-r0               apk           
-php82-sqlite3                8.2.12-r0               apk           
+php82-sqlite3                8.2.13-r0               apk           
 php82-xml                    8.2.12-r0               apk           
 php82-xmlwriter              8.2.12-r0               apk           
 php82-zip                    8.2.12-r0               apk           
@@ -121,7 +122,7 @@ ssl_client                   1.36.1-r5               apk
 tzdata                       2023c-r1                apk           
 urllib3                      1.26.18                 python        
 utmps-libs                   0.1.2.1-r1              apk           
-wheel                        0.41.3                  python        
+wheel                        0.42.0                  python        
 xxhash                       3.2.0                   python        
 xz-libs                      5.4.3-r0                apk           
 zlib                         1.2.13-r1               apk           
