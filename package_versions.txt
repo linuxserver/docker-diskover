@@ -90,7 +90,7 @@ php82-sqlite3                8.2.13-r0               apk
 php82-xml                    8.2.13-r0               apk           
 php82-xmlwriter              8.2.13-r0               apk           
 php82-zip                    8.2.13-r0               apk           
-pip                          23.3.1                  python        
+pip                          23.3.2                  python        
 popt                         1.19-r2                 apk           
 procps-ng                    4.0.4-r0                apk           
 psr/log                      1.1.4                   php-composer  
