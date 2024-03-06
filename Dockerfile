@@ -27,9 +27,6 @@ RUN \
     ncurses \
     php83-ldap \
     php83-sqlite3 \
-    py3-requests \
-    py3-urllib3 \
-    py3-xxhash \
     python3 && \
   echo "**** configure php-fpm to pass env vars ****" && \
   sed -E -i 's/^;?clear_env ?=.*$/clear_env = no/g' /etc/php83/php-fpm.d/www.conf && \
