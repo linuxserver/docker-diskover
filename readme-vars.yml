@@ -83,8 +83,8 @@ app_setup_block: |
   The default username is diskover with the password of **darkdata**, access the container at `http://<host-ip>/`. The UI may be unusable until a valid index has been created.
 
   The default diskover-web Constants.php file located at `/config/diskover-web.conf.d/Constants.php` will need to be edited to allow diskover-web to communicate with the ElasticSearch container. The following entries will need to be edited:
-  * `const ES_HOST = elasticsearch`
-  * `const ES_PORT = 9200`
+  * `const ES_HOST = 'elasticsearch';`
+  * `const ES_PORT = 9200;`
 
   The application doesn't start an index by default. A crontab is created inside of the `/config` directory and can be set up to run automated indexes of `/data`. Changes to this crontab file require a restart to apply. You can also manually run an index by executing `/app/diskover/diskover.py` either in interactive or detached mode:
 
@@ -93,7 +93,8 @@ app_setup_block: |
 
 # changelog
 changelogs:
-  - { date: "25.12.23:", desc: "Existing users should update: site-confs/default.conf - Cleanup default site conf." }
+  - { date: "06.03.24:", desc: "Existing users should update: site-confs/default.conf - Cleanup default site conf." }
+  - { date: "06.03.24:", desc: "Rebase to Alpine 3.19 with php 8.3."}
   - { date: "25.05.23:", desc: "Rebase to Alpine 3.18, deprecate armhf." }
   - { date: "13.04.23:", desc: "Move ssl.conf include to default.conf." }
   - { date: "02.03.23:", desc: "Set permissions on crontabs during init." }
