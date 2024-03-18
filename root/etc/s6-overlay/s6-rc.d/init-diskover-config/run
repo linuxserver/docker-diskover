@@ -39,11 +39,4 @@ if [[ ! -e "/config/diskoverdb.sqlite3" ]]; then
 fi
 ln -sf /config/diskoverdb.sqlite3 /app/diskover-web/diskoverdb.sqlite3
 
-# copy and set variables in Constants.php
-if [[ ! -e "/config/diskover-web.conf.d/Constants.php" ]]; then
-    cp /app/diskover-web/src/diskover/Constants.php.sample /config/diskover-web.conf.d/Constants.php
-fi
-
-ln -sf /config/diskover-web.conf.d/Constants.php /app/diskover-web/src/diskover/Constants.php
-
 lsiown -R abc:abc /config
