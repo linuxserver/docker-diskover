@@ -6,7 +6,7 @@ alpine-baselayout-data       3.4.3-r2               apk
 alpine-keys                  2.4-r1                 apk                            
 alpine-release               3.19.1-r0              apk                            
 apache2-utils                2.4.59-r0              apk                            
-apk-tools                    2.14.3-r1              apk                            
+apk-tools                    2.14.4-r0              apk                            
 apr                          1.7.4-r0               apk                            
 apr-util                     1.6.3-r1               apk                            
 argon2-libs                  20190702-r5            apk                            
@@ -30,6 +30,7 @@ elasticsearch                7.13.4                 python
 elasticsearch/elasticsearch  v7.13.1                php-composer                   
 ezimuel/guzzlestreams        3.0.1                  php-composer                   
 ezimuel/ringphp              1.1.2                  php-composer                   
+findutils                    4.9.0-r5               apk                            
 gdbm                         1.23-r1                apk                            
 git                          2.43.0-r0              apk                            
 hiredis                      1.2.0-r0               apk                            
