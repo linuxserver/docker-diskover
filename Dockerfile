@@ -11,6 +11,8 @@ LABEL maintainer="alex-phillips"
 
 # environment settings
 ENV DISKOVERDIR=/config/diskover.conf.d/diskover/
+ENV DATABASE=/config/diskoverdb.sqlite3
+ENV ES_HOST=elasticsearch
 
 RUN \
   echo "**** install build packages ****" && \
