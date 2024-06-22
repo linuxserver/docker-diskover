@@ -1,48 +1,15 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
-# copy config
-if [[ ! -e /config/diskover.conf.d ]]; then
-    cp -r /app/diskover/configs_sample /config/diskover.conf.d
-fi
-
 # setup web
 mkdir -p \
     /config/diskover-web.conf.d
-
-# copy over sample config files
-if [[ -d /app/diskover-web/public ]]; then
-    cd /app/diskover-web/public || exit 1
-    for file in *.sample; do
-        dest=${file%.sample}
-        if [[ ! -e "/config/diskover-web.conf.d/$dest" ]]; then
-            cp "/app/diskover-web/public/$file" "/config/diskover-web.conf.d/$dest"
-        fi
-        ln -sf "/config/diskover-web.conf.d/$dest" "/app/diskover-web/public/$dest"
-    done
-fi
-
-if [[ -d /app/diskover-web/public/tasks ]]; then
-    cd /app/diskover-web/public/tasks || exit 1
-    for file in *.sample; do
-        dest=${file%.sample}
-        if [[ ! -e "/config/diskover-web.conf.d/$dest" ]]; then
-            cp "/app/diskover-web/public/tasks/$file" "/config/diskover-web.conf.d/$dest"
-        fi
-        ln -sf "/config/diskover-web.conf.d/$dest" "/app/diskover-web/public/tasks/$dest"
-    done
-fi
 
 # touch db
 if [[ ! -e "/config/diskoverdb.sqlite3" ]]; then
     touch /config/diskoverdb.sqlite3
 fi
 ln -sf /config/diskoverdb.sqlite3 /app/diskover-web/diskoverdb.sqlite3
-
-# copy and set variables in Constants.php
-if [[ ! -e "/config/diskover-web.conf.d/Constants.php" ]]; then
-    cp /app/diskover-web/src/diskover/Constants.php.sample /config/diskover-web.conf.d/Constants.php
-fi
 
 ln -sf /config/diskover-web.conf.d/Constants.php /app/diskover-web/src/diskover/Constants.php
 

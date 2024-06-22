@@ -27,8 +27,6 @@ param_env_vars:
   - { env_var: "TZ", env_value: "America/New_York", desc: "Specify a timezone to use EG America/New_York"}
   - { env_var: "ES_HOST", env_value: "elasticsearch", desc: "ElasticSearch host (optional)"}
   - { env_var: "ES_PORT", env_value: "9200", desc: "ElasticSearch port (optional)"}
-  - { env_var: "ES_USER", env_value: "elastic", desc: "ElasticSearch username (optional)"}
-  - { env_var: "ES_PASS", env_value: "changeme", desc: "ElasticSearch password (optional)"}
 
 custom_compose: |
   version: '2'
@@ -56,7 +54,7 @@ custom_compose: |
       image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
       environment:
         - discovery.type=single-node
-        - xpack.security.enabled=true
+        - xpack.security.enabled=false
         - bootstrap.memory_lock=true
         - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
       ulimits:
