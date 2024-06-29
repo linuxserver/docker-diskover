@@ -11,6 +11,8 @@ LABEL maintainer="alex-phillips"
 
 # environment settings
 ENV DISKOVERDIR=/config/diskover.conf.d/diskover/
+ENV DATABASE=/config/diskoverdb.sqlite3
+ENV ES_HOST=elasticsearch
 
 RUN \
   echo "**** install build packages ****" && \
@@ -23,9 +25,7 @@ RUN \
     python3-dev && \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
-    libldap \
     ncurses \
-    php83-ldap \
     php83-sqlite3 \
     python3 && \
   echo "**** configure php-fpm to pass env vars ****" && \
