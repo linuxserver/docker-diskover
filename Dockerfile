@@ -25,9 +25,7 @@ RUN \
     python3-dev && \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
-    libldap \
     ncurses \
-    php83-ldap \
     php83-sqlite3 \
     python3 && \
   echo "**** configure php-fpm to pass env vars ****" && \
