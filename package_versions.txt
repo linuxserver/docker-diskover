@@ -4,7 +4,7 @@ Simple Launcher              1.1.0.14               dotnet        (+5 duplicates
 alpine-baselayout            3.4.3-r2               apk                            
 alpine-baselayout-data       3.4.3-r2               apk                            
 alpine-keys                  2.4-r1                 apk                            
-alpine-release               3.19.1-r0              apk                            
+alpine-release               3.19.2-r0              apk                            
 apache2-utils                2.4.59-r0              apk                            
 apk-tools                    2.14.4-r0              apk                            
 apr                          1.7.4-r0               apk                            
@@ -18,7 +18,7 @@ c-ares                       1.27.0-r0              apk
 ca-certificates              20240226-r0            apk                            
 ca-certificates-bundle       20240226-r0            apk                            
 catatonit                    0.2.0-r0               apk                            
-certifi                      2024.6.2               python                         
+certifi                      2024.7.4               python                         
 charset-normalizer           3.3.2                  python                         
 composer                     2.7.7                  binary                         
 confuse                      1.6.0                  python                         
