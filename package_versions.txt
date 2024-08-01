@@ -1,5 +1,4 @@
 NAME                         VERSION                TYPE                          
-PyYAML                       6.0.1                  python                         
 Simple Launcher              1.1.0.14               dotnet        (+5 duplicates)  
 alpine-baselayout            3.4.3-r2               apk                            
 alpine-baselayout-data       3.4.3-r2               apk                            
@@ -93,7 +92,7 @@ php83-sqlite3                8.3.8-r0               apk
 php83-xml                    8.3.8-r0               apk                            
 php83-xmlwriter              8.3.8-r0               apk                            
 php83-zip                    8.3.8-r0               apk                            
-pip                          24.1.2                 python                         
+pip                          24.2                   python                         
 popt                         1.19-r3                apk                            
 procps-ng                    4.0.4-r0               apk                            
 psr/log                      1.1.4                  php-composer                   
@@ -101,6 +100,7 @@ pyc                          3.11.9-r0              apk
 python3                      3.11.9-r0              apk                            
 python3-pyc                  3.11.9-r0              apk                            
 python3-pycache-pyc0         3.11.9-r0              apk                            
+pyyaml                       6.0.1                  python                         
 react/promise                v2.8.0                 php-composer                   
 readline                     8.2.1-r2               apk                            
 requests                     2.31.0                 python                         
