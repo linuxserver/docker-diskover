@@ -17,7 +17,7 @@ c-ares                       1.27.0-r0              apk
 ca-certificates              20240226-r0            apk                            
 ca-certificates-bundle       20240226-r0            apk                            
 catatonit                    0.2.0-r0               apk                            
-certifi                      2024.7.4               python                         
+certifi                      2024.8.30              python                         
 charset-normalizer           2.0.12                 python                         
 composer                     2.7.8                  binary                         
 confuse                      1.6.0                  python                         
@@ -111,7 +111,7 @@ skalibs                      2.14.0.1-r0            apk
 sqlite-libs                  3.44.2-r0              apk                            
 ssl_client                   1.36.1-r19             apk                            
 tzdata                       2024a-r0               apk                            
-urllib3                      1.26.19                python                         
+urllib3                      1.26.20                python                         
 utmps-libs                   0.1.2.2-r0             apk                            
 wheel                        0.44.0                 python                         
 xz-libs                      5.4.5-r0               apk                            
