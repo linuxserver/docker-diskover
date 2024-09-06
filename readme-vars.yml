@@ -24,7 +24,6 @@ param_ports:
   - { external_port: "80", internal_port: "80", port_desc: "diskover Web UI" }
 param_usage_include_env: true
 param_env_vars:
-  - { env_var: "TZ", env_value: "America/New_York", desc: "Specify a timezone to use EG America/New_York"}
   - { env_var: "ES_HOST", env_value: "elasticsearch", desc: "ElasticSearch host (optional)"}
   - { env_var: "ES_PORT", env_value: "9200", desc: "ElasticSearch port (optional)"}
 
@@ -91,6 +90,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "06.09.24:", desc: "Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings." }
   - { date: "06.03.24:", desc: "Existing users should update: site-confs/default.conf - Cleanup default site conf." }
   - { date: "06.03.24:", desc: "Rebase to Alpine 3.19 with php 8.3."}
   - { date: "25.05.23:", desc: "Rebase to Alpine 3.18, deprecate armhf." }
