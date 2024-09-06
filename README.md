@@ -101,10 +101,10 @@ services:
       - elasticsearch
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.22
     environment:
       - discovery.type=single-node
-      - xpack.security.enabled=true
+      - xpack.security.enabled=false
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
     ulimits:
@@ -134,8 +134,6 @@ docker run -d \
   -e TZ=Etc/UTC \
   -e ES_HOST=elasticsearch \
   -e ES_PORT=9200 \
-  -e ES_USER=elastic \
-  -e ES_PASS=changeme \
   -p 80:80 \
   -v /path/to/diskover/config:/config \
   -v /path/to/diskover/data:/data \
@@ -155,8 +153,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-e ES_HOST=elasticsearch` | ElasticSearch host (optional) |
 | `-e ES_PORT=9200` | ElasticSearch port (optional) |
-| `-e ES_USER=elastic` | ElasticSearch username (optional) |
-| `-e ES_PASS=changeme` | ElasticSearch password (optional) |
 | `-v /config` | Persistent config files |
 | `-v /data` | Default mount point to crawl |
 

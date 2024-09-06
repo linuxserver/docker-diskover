@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine-nginx:arm64v8-3.19
+FROM ghcr.io/linuxserver/baseimage-alpine-nginx:arm64v8-3.20
 
 # set version label
 ARG BUILD_DATE
@@ -11,6 +11,8 @@ LABEL maintainer="alex-phillips"
 
 # environment settings
 ENV DISKOVERDIR=/config/diskover.conf.d/diskover/
+ENV DATABASE=/config/diskoverdb.sqlite3
+ENV ES_HOST=elasticsearch
 
 RUN \
   echo "**** install build packages ****" && \
@@ -23,9 +25,7 @@ RUN \
     python3-dev && \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
-    libldap \
     ncurses \
-    php83-ldap \
     php83-sqlite3 \
     python3 && \
   echo "**** configure php-fpm to pass env vars ****" && \
@@ -48,8 +48,9 @@ RUN \
   pip install -U --no-cache-dir \
     pip \
     wheel && \
-  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.19/ \
+  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.20/ \
     -r requirements.txt && \
+  printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** cleanup ****" && \
   apk del --purge \
     build-dependencies && \
