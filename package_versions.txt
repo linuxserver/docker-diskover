@@ -49,8 +49,8 @@ libgcc                       13.2.1_git20240309-r0  apk
 libidn2                      2.3.7-r0               apk                            
 libintl                      0.22.5-r0              apk                            
 libmd                        1.1.0-r0               apk                            
-libncursesw                  6.4_p20240420-r0       apk                            
-libpanelw                    6.4_p20240420-r0       apk                            
+libncursesw                  6.4_p20240420-r1       apk                            
+libpanelw                    6.4_p20240420-r1       apk                            
 libproc2                     4.0.4-r0               apk                            
 libpsl                       0.21.5-r1              apk                            
 libssl3                      3.3.2-r0               apk                            
@@ -65,8 +65,8 @@ mpdecimal                    4.0.0-r0               apk
 musl                         1.2.5-r0               apk                            
 musl-utils                   1.2.5-r0               apk                            
 nano                         8.0-r0                 apk                            
-ncurses                      6.4_p20240420-r0       apk                            
-ncurses-terminfo-base        6.4_p20240420-r0       apk                            
+ncurses                      6.4_p20240420-r1       apk                            
+ncurses-terminfo-base        6.4_p20240420-r1       apk                            
 netcat-openbsd               1.226-r0               apk                            
 nghttp2-libs                 1.62.1-r0              apk                            
 nginx                        1.26.2-r0              apk                            
@@ -94,10 +94,10 @@ pip                          24.2                   python
 popt                         1.19-r3                apk                            
 procps-ng                    4.0.4-r0               apk                            
 psr/log                      1.1.4                  php-composer                   
-pyc                          3.12.3-r2              apk                            
-python3                      3.12.3-r2              apk                            
-python3-pyc                  3.12.3-r2              apk                            
-python3-pycache-pyc0         3.12.3-r2              apk                            
+pyc                          3.12.6-r0              apk                            
+python3                      3.12.6-r0              apk                            
+python3-pyc                  3.12.6-r0              apk                            
+python3-pycache-pyc0         3.12.6-r0              apk                            
 pyyaml                       6.0.2                  python                         
 react/promise                v2.8.0                 php-composer                   
 readline                     8.2.10-r0              apk                            
