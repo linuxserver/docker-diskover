@@ -47,6 +47,7 @@ RUN \
   python3 -m venv /lsiopy && \
   pip install -U --no-cache-dir \
     pip \
+    setuptools \
     wheel && \
   pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.20/ \
     -r requirements.txt && \
