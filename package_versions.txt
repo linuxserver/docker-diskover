@@ -19,7 +19,7 @@ c-ares                       1.33.1-r0              apk
 ca-certificates              20240705-r0            apk                            
 ca-certificates-bundle       20240705-r0            apk                            
 catatonit                    0.2.0-r0               apk                            
-certifi                      2024.8.30              python                         
+certifi                      2024.12.14             python                         
 charset-normalizer           2.0.12                 python                         
 composer                     2.8.4                  binary                         
 confuse                      1.6.0                  python                         
