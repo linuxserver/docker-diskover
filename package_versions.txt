@@ -116,7 +116,7 @@ react/promise                v2.8.0                 php-composer
 readline                     8.2.10-r0              apk                            
 requests                     2.27.1                 python                         
 scanelf                      1.3.7-r2               apk                            
-setuptools                   75.8.2                 python                         
+setuptools                   76.0.0                 python                         
 shadow                       4.15.1-r0              apk                            
 skalibs                      2.14.1.1-r0            apk                            
 sqlite-libs                  3.45.3-r1              apk                            
