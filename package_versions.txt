@@ -66,7 +66,7 @@ libssl3                      3.3.3-r0               apk
 libstdc++                    13.2.1_git20240309-r1  apk                            
 libunistring                 1.2-r0                 apk                            
 libuuid                      2.40.1-r1              apk                            
-libxml2                      2.12.7-r0              apk                            
+libxml2                      2.12.7-r2              apk                            
 libzip                       1.10.1-r0              apk                            
 linux-pam                    1.6.0-r0               apk                            
 logrotate                    3.21.0-r1              apk                            
@@ -80,7 +80,7 @@ ncurses                      6.4_p20240420-r2       apk
 ncurses-terminfo-base        6.4_p20240420-r2       apk                            
 netcat-openbsd               1.226-r0               apk                            
 nghttp2-libs                 1.62.1-r0              apk                            
-nginx                        1.26.2-r0              apk                            
+nginx                        1.26.3-r0              apk                            
 oniguruma                    6.9.9-r0               apk                            
 openssl                      3.3.3-r0               apk                            
 packaging                    24.2                   python                         
@@ -116,7 +116,7 @@ react/promise                v2.8.0                 php-composer
 readline                     8.2.10-r0              apk                            
 requests                     2.27.1                 python                         
 scanelf                      1.3.7-r2               apk                            
-setuptools                   76.0.0                 python                         
+setuptools                   77.0.1                 python                         
 shadow                       4.15.1-r0              apk                            
 skalibs                      2.14.1.1-r0            apk                            
 sqlite-libs                  3.45.3-r1              apk                            
@@ -127,8 +127,7 @@ typing-extensions            4.12.2                 python
 tzdata                       2025a-r0               apk                            
 urllib3                      1.26.20                python                         
 utmps-libs                   0.1.2.2-r1             apk                            
-wheel                        0.43.0                 python                         
-wheel                        0.45.1                 python                         
+wheel                        0.45.1                 python        (+1 duplicate)   
 xz-libs                      5.6.2-r0               apk                            
 zipp                         3.19.2                 python                         
 zlib                         1.3.1-r1               apk                            
