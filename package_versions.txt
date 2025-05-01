@@ -18,7 +18,7 @@ c-ares                       1.33.1-r0              apk
 ca-certificates              20241121-r1            apk             
 ca-certificates-bundle       20241121-r1            apk             
 catatonit                    0.2.0-r0               apk             
-certifi                      2025.1.31              python          
+certifi                      2025.4.26              python          
 charset-normalizer           2.0.12                 python          
 composer                     2.8.8                  binary          
 confuse                      1.6.0                  python          
@@ -101,7 +101,7 @@ php83-sqlite3                8.3.15-r0              apk
 php83-xml                    8.3.15-r0              apk             
 php83-xmlwriter              8.3.15-r0              apk             
 php83-zip                    8.3.15-r0              apk             
-pip                          25.0.1                 python          
+pip                          25.1                   python          
 platformdirs                 4.2.2                  python          
 popt                         1.19-r3                apk             
 procps-ng                    4.0.4-r0               apk             
