@@ -115,10 +115,10 @@ platformdirs                 4.2.2                  python
 popt                         1.19-r3                apk                            
 procps-ng                    4.0.4-r0               apk                            
 psr/log                      1.1.4                  php-composer                   
-pyc                          3.12.10-r1             apk                            
-python3                      3.12.10-r1             apk                            
-python3-pyc                  3.12.10-r1             apk                            
-python3-pycache-pyc0         3.12.10-r1             apk                            
+pyc                          3.12.11-r0             apk                            
+python3                      3.12.11-r0             apk                            
+python3-pyc                  3.12.11-r0             apk                            
+python3-pycache-pyc0         3.12.11-r0             apk                            
 pyyaml                       6.0.2                  python                         
 react/promise                v2.8.0                 php-composer                   
 readline                     8.2.10-r0              apk                            
