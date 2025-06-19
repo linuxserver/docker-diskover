@@ -19,7 +19,7 @@ c-ares                       1.33.1-r0              apk
 ca-certificates              20241121-r1            apk                            
 ca-certificates-bundle       20241121-r1            apk                            
 catatonit                    0.2.0-r0               apk                            
-certifi                      2025.4.26              python                         
+certifi                      2025.6.15              python                         
 charset-normalizer           2.0.12                 python                         
 cli                          UNKNOWN                binary                         
 cli-32                       UNKNOWN                binary                         
