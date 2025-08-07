@@ -4,7 +4,7 @@ alpine-baselayout            3.6.5-r0               apk
 alpine-baselayout-data       3.6.5-r0               apk                            
 alpine-keys                  2.4-r1                 apk                            
 alpine-release               3.20.7-r0              apk                            
-apache2-utils                2.4.64-r0              apk                            
+apache2-utils                2.4.65-r0              apk                            
 apk-tools                    2.14.4-r1              apk                            
 apr                          1.7.5-r0               apk                            
 apr-util                     1.6.3-r1               apk                            
@@ -19,7 +19,7 @@ c-ares                       1.33.1-r0              apk
 ca-certificates              20250619-r0            apk                            
 ca-certificates-bundle       20250619-r0            apk                            
 catatonit                    0.2.0-r0               apk                            
-certifi                      2025.7.14              python                         
+certifi                      2025.8.3               python                         
 charset-normalizer           2.0.12                 python                         
 cli                          UNKNOWN                binary                         
 cli-32                       UNKNOWN                binary                         
