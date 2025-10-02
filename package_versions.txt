@@ -25,7 +25,7 @@ cli                          UNKNOWN                binary
 cli-32                       UNKNOWN                binary                         
 cli-64                       UNKNOWN                binary                         
 cli-arm64                    UNKNOWN                binary                         
-composer                     2.8.11                 binary                         
+composer                     2.8.12                 binary                         
 confuse                      1.6.0                  python                         
 coreutils                    9.5-r2                 apk                            
 coreutils-env                9.5-r2                 apk                            
@@ -60,7 +60,7 @@ libbz2                       1.0.8-r6               apk
 libcrypto3                   3.3.4-r0               apk                            
 libcurl                      8.12.1-r0              apk                            
 libedit                      20240517.3.1-r0        apk                            
-libexpat                     2.7.0-r0               apk                            
+libexpat                     2.7.2-r0               apk                            
 libffi                       3.4.6-r0               apk                            
 libgcc                       13.2.1_git20240309-r1  apk                            
 libidn2                      2.3.7-r0               apk                            
@@ -119,7 +119,7 @@ pyc                          3.12.11-r0             apk
 python3                      3.12.11-r0             apk                            
 python3-pyc                  3.12.11-r0             apk                            
 python3-pycache-pyc0         3.12.11-r0             apk                            
-pyyaml                       6.0.2                  python                         
+pyyaml                       6.0.3                  python                         
 react/promise                v2.8.0                 php-composer                   
 readline                     8.2.10-r0              apk                            
 requests                     2.27.1                 python                         
