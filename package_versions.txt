@@ -16,8 +16,8 @@ brotli-libs                  1.1.0-r2               apk
 busybox                      1.36.1-r30             apk                            
 busybox-binsh                1.36.1-r30             apk                            
 c-ares                       1.33.1-r0              apk                            
-ca-certificates              20250619-r0            apk                            
-ca-certificates-bundle       20250619-r0            apk                            
+ca-certificates              20250911-r0            apk                            
+ca-certificates-bundle       20250911-r0            apk                            
 catatonit                    0.2.0-r0               apk                            
 certifi                      2025.10.5              python                         
 charset-normalizer           2.0.12                 python                         
@@ -31,7 +31,7 @@ coreutils                    9.5-r2                 apk
 coreutils-env                9.5-r2                 apk                            
 coreutils-fmt                9.5-r2                 apk                            
 coreutils-sha512sum          9.5-r2                 apk                            
-curl                         8.12.1-r0              apk                            
+curl                         8.14.1-r2              apk                            
 elasticsearch                7.13.4                 python                         
 elasticsearch/elasticsearch  v7.13.1                php-composer                   
 ezimuel/guzzlestreams        3.0.1                  php-composer                   
@@ -45,7 +45,7 @@ gui                          UNKNOWN                binary
 gui-32                       UNKNOWN                binary                         
 gui-64                       UNKNOWN                binary                         
 gui-arm64                    UNKNOWN                binary                         
-idna                         3.10                   python                         
+idna                         3.11                   python                         
 importlib-metadata           8.0.0                  python                         
 inflect                      7.3.1                  python                         
 jaraco-collections           5.1.0                  python                         
@@ -58,7 +58,7 @@ libattr                      2.5.2-r0               apk
 libbsd                       0.12.2-r0              apk                            
 libbz2                       1.0.8-r6               apk                            
 libcrypto3                   3.3.5-r0               apk                            
-libcurl                      8.12.1-r0              apk                            
+libcurl                      8.14.1-r2              apk                            
 libedit                      20240517.3.1-r0        apk                            
 libexpat                     2.7.3-r0               apk                            
 libffi                       3.4.6-r0               apk                            
@@ -115,10 +115,10 @@ platformdirs                 4.2.2                  python
 popt                         1.19-r3                apk                            
 procps-ng                    4.0.4-r0               apk                            
 psr/log                      1.1.4                  php-composer                   
-pyc                          3.12.11-r0             apk                            
-python3                      3.12.11-r0             apk                            
-python3-pyc                  3.12.11-r0             apk                            
-python3-pycache-pyc0         3.12.11-r0             apk                            
+pyc                          3.12.12-r0             apk                            
+python3                      3.12.12-r0             apk                            
+python3-pyc                  3.12.12-r0             apk                            
+python3-pycache-pyc0         3.12.12-r0             apk                            
 pyyaml                       6.0.3                  python                         
 react/promise                v2.8.0                 php-composer                   
 readline                     8.2.10-r0              apk                            
