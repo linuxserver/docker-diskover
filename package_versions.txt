@@ -110,7 +110,7 @@ php83-sqlite3                8.3.15-r0              apk
 php83-xml                    8.3.15-r0              apk                            
 php83-xmlwriter              8.3.15-r0              apk                            
 php83-zip                    8.3.15-r0              apk                            
-pip                          25.2                   python                         
+pip                          25.3                   python                         
 platformdirs                 4.2.2                  python                         
 popt                         1.19-r3                apk                            
 procps-ng                    4.0.4-r0               apk                            
