@@ -1,11 +1,12 @@
-## Version 2024/09/06 - Changelog: https://github.com/linuxserver/docker-diskover/commits/master/root/defaults/nginx/site-confs/default.conf.sample
+## Version 2026/02/08 - Changelog: https://github.com/linuxserver/docker-diskover/commits/master/root/defaults/nginx/site-confs/default.conf.sample
 
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-
     listen 443 ssl default_server;
     listen [::]:443 ssl default_server;
+    listen 443 quic reuseport default_server;
+    listen [::]:443 quic reuseport default_server;
 
     server_name _;
 
@@ -38,8 +39,16 @@ server {
         fastcgi_buffer_size 32k;
     }
 
-    # deny access to .htaccess/.htpasswd files
-    location ~ /\.ht {
+    # deny access to all dotfiles
+    location ~ /\. {
         deny all;
+        log_not_found off;
+        access_log off;
+        return 404;
+    }
+
+    # Allow access to the ".well-known" directory
+    location ^~ /.well-known {
+        allow all;
     }
 }
