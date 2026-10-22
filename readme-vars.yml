@@ -141,11 +141,12 @@ init_diagram: |
     svc-php-fpm -> legacy-services
   }
   Base Images: {
-    "baseimage-alpine-nginx:3.20" <- "baseimage-alpine:3.20"
+    "baseimage-alpine-nginx:3.22" <- "baseimage-alpine:3.22"
   }
   "diskover:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "22.10.26:", desc: "Rebase to Alpine 3.22 with php 8.4."}
   - {date: "06.09.24:", desc: "Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings."}
   - {date: "06.03.24:", desc: "Existing users should update: site-confs/default.conf - Cleanup default site conf."}
   - {date: "06.03.24:", desc: "Rebase to Alpine 3.19 with php 8.3."}
