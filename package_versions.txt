@@ -107,11 +107,11 @@ php83-openssl                8.3.15-r0              apk
 php83-phar                   8.3.15-r0              apk                            
 php83-session                8.3.15-r0              apk                            
 php83-simplexml              8.3.15-r0              apk                            
-php83-sqlite3                8.3.15-r0              apk                            
+php83-sqlite3                8.3.36-r0              apk                            
 php83-xml                    8.3.15-r0              apk                            
 php83-xmlwriter              8.3.15-r0              apk                            
 php83-zip                    8.3.15-r0              apk                            
-pip                          26.2.2                 python                         
+pip                          26.3                   python                         
 platformdirs                 4.2.2                  python                         
 popt                         1.19-r3                apk                            
 procps-ng                    4.0.4-r0               apk                            
