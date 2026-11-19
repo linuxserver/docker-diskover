@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+# disable http2 in existing nginx.conf, alpine 3.20 nginx has no fix for the http2 cves
+NGINX_CONF="/config/nginx/nginx.conf"
+
+if [[ -f "${NGINX_CONF}" ]] && grep -Eq '^\s*http2 on;' "${NGINX_CONF}"; then
+    echo "disabling http2 in ${NGINX_CONF}"
+    sed -i -E 's/^(\s*)http2 on;/\1http2 off;/' "${NGINX_CONF}"
+fi

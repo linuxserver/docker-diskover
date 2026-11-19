@@ -32,6 +32,8 @@ RUN \
   sed -E -i 's/^;?clear_env ?=.*$/clear_env = no/g' /etc/php83/php-fpm.d/www.conf && \
   grep -qxF 'clear_env = no' /etc/php83/php-fpm.d/www.conf || echo 'clear_env = no' >> /etc/php83/php-fpm.d/www.conf && \
   echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php83/php-fpm.conf && \
+  echo "**** disable http2 in default nginx conf ****" && \
+  sed -i -E 's/^(\s*)http2 on;/\1http2 off;/' /defaults/nginx/nginx.conf.sample && \
   echo "**** install diskover ****" && \
   if [ -z ${DISKOVER_RELEASE+x} ]; then \
     DISKOVER_RELEASE=$(curl -sX GET "https://api.github.com/repos/diskoverdata/diskover-community/releases" \
