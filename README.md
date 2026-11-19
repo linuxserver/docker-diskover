@@ -318,6 +318,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **08.02.26:** - Existing users should update: site-confs/default.conf - Deny access to all dotfiles.
 * **06.09.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
 * **06.03.24:** - Existing users should update: site-confs/default.conf - Cleanup default site conf.
 * **06.03.24:** - Rebase to Alpine 3.19 with php 8.3.
